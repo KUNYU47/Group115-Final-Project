@@ -30,10 +30,12 @@ public class WeatherUseCase {
             if (weatherData != null) {
                 System.out.println("Weather Data: " + weatherData.toString());
                 // Additional parsing or processing can be done here
-            } else {
+            }
+            else {
                 System.out.println("Failed to fetch weather data.");
             }
-        } else {
+        }
+        else {
             System.out.println("Failed to fetch coordinates for the city.");
         }
     }

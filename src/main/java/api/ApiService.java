@@ -12,7 +12,7 @@ public class ApiService {
     private static final String API_KEY;
 
     static {
-        API_KEY = "PROJECT_RED";
+        API_KEY = "d918d0fcce1238fa1bc59c035b57621c";
     }
 
     /**
@@ -33,7 +33,7 @@ public class ApiService {
     /**
      * Method for fetching weather data using One Call API 3.0
      * @param cityName the city's name of the target location
-     * @return Return the Weather Data from the api
+     * @return Return the coordination of the target location from the api
      */
     public JSONObject getCoordinates(String cityName) {
         JSONObject result = new JSONObject();
