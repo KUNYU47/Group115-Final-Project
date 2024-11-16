@@ -1,4 +1,4 @@
-package api;
+package data_access;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -8,7 +8,7 @@ import java.net.URL;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class ApiService {
+public class WeatherDataAcessObject {
     private static final String API_KEY;
 
     static {
