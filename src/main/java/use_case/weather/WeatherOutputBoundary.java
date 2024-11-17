@@ -5,9 +5,9 @@ import use_case.login.LoginOutputData;
 public interface WeatherOutputBoundary {
     /**
      * Prepares the success view for the Weather Use Case.
-     * @param outputData the output data
+     * @param response the output data
      */
-    void prepareSuccessView(LoginOutputData outputData);
+    void prepareSuccessView(WeatherOutputData response);
 
     /**
      * Prepares the failure view for the Weather Use Case.

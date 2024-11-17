@@ -1,14 +1,13 @@
 package use_case.weather;
 
-import data_access.WeatherDataAccessInterface;
-import data_access.WeatherDataAcessObject;
-import interface_adapter.weather.WeatherPresenter;
 import org.json.JSONObject;
+
+import data_access.WeatherDataAcessObject;
 
 /**
  * The Weather Interactor.
  */
-public class WeatherInteractor implements WeatherInputData {
+public class WeatherInteractor implements WeatherInputBoundary {
     private final WeatherDataAccessInterface weatherDataAccessObject;
     private final WeatherOutputBoundary weatherPresenter;
 
@@ -18,12 +17,12 @@ public class WeatherInteractor implements WeatherInputData {
         this.weatherPresenter = weatherPresenter;
     }
 
+    @Override
     public void execute(WeatherInputData weatherInputData) {
         final String inputCity = weatherInputData.getCity();
 
         if (inputCity != null) {
-            final WeatherDataAcessObject weatherDataAcessObject = new WeatherDataAcessObject();
-            final JSONObject city = weatherDataAcessObject.getCoordinates(inputCity);
+            final JSONObject city = this.weatherDataAccessObject.getCoordinates(inputCity);
 
             if (city != null) {
                 final double lat = city.getDouble("lat");
@@ -31,16 +30,16 @@ public class WeatherInteractor implements WeatherInputData {
 
                 // Fetch weather data using the coordinates
                 final JSONObject weatherData = WeatherDataAcessObject.getWeatherData(lat, lon);
-                if (weatherData != null) {
-                    System.out.println("Weather Data: " + weatherData.toString());
-                }
-                else {
-                    System.out.println("Failed to fetch weather data.");
-                }
+
+                
+
             }
             else {
-                System.out.println("Failed to fetch coordinates for the city.");
+                weatherPresenter.prepareFailView("Can't find your city.");
             }
+        }
+        else {
+            weatherPresenter.prepareFailView("Invalid City.");
         }
     }
 }

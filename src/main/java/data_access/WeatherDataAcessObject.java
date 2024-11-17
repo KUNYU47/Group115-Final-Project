@@ -7,12 +7,13 @@ import java.net.URL;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import use_case.weather.WeatherDataAccessInterface;
 
-public class WeatherDataAcessObject {
+public class WeatherDataAcessObject implements WeatherDataAccessInterface {
     private static final String API_KEY;
 
     static {
-        API_KEY = "ENTER_KEY_HERE";
+        API_KEY = "d918d0fcce1238fa1bc59c035b57621c";
     }
 
     /**
