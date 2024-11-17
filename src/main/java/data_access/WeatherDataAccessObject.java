@@ -7,9 +7,10 @@ import java.net.URL;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import use_case.weather.WeatherDataAccessInterface;
 
-public class WeatherDataAcessObject implements WeatherDataAccessInterface {
+public class WeatherDataAccessObject implements WeatherDataAccessInterface {
     private static final String API_KEY;
 
     static {
