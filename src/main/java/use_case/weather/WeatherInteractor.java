@@ -30,10 +30,9 @@ public class WeatherInteractor implements WeatherInputData {
                 final double lon = city.getDouble("lon");
 
                 // Fetch weather data using the coordinates
-                final JSONObject weatherData = apiService.getWeatherData(lat, lon);
+                final JSONObject weatherData = WeatherDataAcessObject.getWeatherData(lat, lon);
                 if (weatherData != null) {
                     System.out.println("Weather Data: " + weatherData.toString());
-                    // Additional parsing or processing can be done here
                 }
                 else {
                     System.out.println("Failed to fetch weather data.");
