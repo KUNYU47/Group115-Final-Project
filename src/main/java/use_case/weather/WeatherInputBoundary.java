@@ -1,7 +1,14 @@
 package use_case.weather;
 
+/**
+ * Input boundary for actions which are related with to weather.
+ */
 public interface WeatherInputBoundary {
 
-    void excute
-    void fetchWeather(String cityName);
+    /**
+     * Execute the weather use case.
+     * @param weatherInputData the input data
+     */
+    void execute(WeatherInputData weatherInputData);
+
 }
