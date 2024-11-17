@@ -29,9 +29,14 @@ public class WeatherInteractor implements WeatherInputBoundary {
                 final double lon = city.getDouble("lon");
 
                 // Fetch weather data using the coordinates
-                final JSONObject weatherData = WeatherDataAcessObject.getWeatherData(lat, lon);
+                final JSONObject weatherData = this.weatherDataAccessObject.getWeatherData(lat, lon);
 
-                
+                final WeatherOutputData response = new WeatherOutputData(
+                        weatherData.getJSONObject("current"),
+                        city.getString("name"),
+                        false);
+
+                weatherPresenter.prepareSuccessView(response);
 
             }
             else {
