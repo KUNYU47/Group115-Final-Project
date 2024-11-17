@@ -2,8 +2,6 @@ package use_case.weather;
 
 import org.json.JSONObject;
 
-import data_access.WeatherDataAcessObject;
-
 /**
  * The Weather Interactor.
  */

@@ -2,13 +2,13 @@ package use_case.weather;
 
 import org.json.JSONObject;
 
-import data_access.WeatherDataAcessObject;
+import data_access.WeatherDataAccessObject;
 
 public class WeatherUseCase {
-    private WeatherDataAcessObject apiService;
+    private WeatherDataAccessObject apiService;
 
     public WeatherUseCase() {
-        this.apiService = new WeatherDataAcessObject();
+        this.apiService = new WeatherDataAccessObject();
     }
 
     /**
