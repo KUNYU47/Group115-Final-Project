@@ -191,7 +191,7 @@ public class AppBuilder {
      */
     public AppBuilder addWeatherUseCase() {
         final WeatherOutputBoundary weatherOutputBoundary = new WeatherPresenter(viewManagerModel,
-                weatherViewModel);
+                weatherViewModel, loggedInViewModel);
 
         final WeatherDataAccessInterface weatherDataAccessObject = new WeatherDataAccessObject();
 

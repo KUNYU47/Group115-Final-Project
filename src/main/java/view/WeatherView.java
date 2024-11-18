@@ -59,14 +59,17 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
         getWeatherButton.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(getWeatherButton)) {
-                            final String cityName = cityNameInputField.getText();
-                            weatherController.execute(cityName);
+                        final String cityName = cityNameInputField.getText();
+                        weatherController.execute(cityName);
                         }
-                    }
                 });
 
-        goToSettingsButton.addActionListener(this);
+        goToSettingsButton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        weatherController.switchToLoggedInView();
+                    }
+                });
 
         // Set up the main layout
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

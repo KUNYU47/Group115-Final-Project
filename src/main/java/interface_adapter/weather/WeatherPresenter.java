@@ -1,6 +1,8 @@
 package interface_adapter.weather;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.change_password.LoggedInState;
+import interface_adapter.change_password.LoggedInViewModel;
 import use_case.weather.WeatherOutputBoundary;
 import use_case.weather.WeatherOutputData;
 
@@ -10,12 +12,15 @@ import use_case.weather.WeatherOutputData;
 public class WeatherPresenter implements WeatherOutputBoundary {
 
     private final WeatherViewModel weatherViewModel;
+    private final LoggedInViewModel loggedInViewModel;
     private final ViewManagerModel viewManagerModel;
 
     public WeatherPresenter(ViewManagerModel viewManagerModel,
-                            WeatherViewModel weatherViewModel) {
+                            WeatherViewModel weatherViewModel,
+                            LoggedInViewModel loggedInViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.weatherViewModel = weatherViewModel;
+        this.loggedInViewModel = loggedInViewModel;
     }
 
     @Override
@@ -41,5 +46,11 @@ public class WeatherPresenter implements WeatherOutputBoundary {
         final WeatherState weatherState = weatherViewModel.getState();
         weatherState.setErrorMessage(error);
         weatherViewModel.firePropertyChanged();
+    }
+
+    @Override
+    public void switchToLoggedInView() {
+        viewManagerModel.setState(loggedInViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 }

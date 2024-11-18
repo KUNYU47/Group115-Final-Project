@@ -11,4 +11,5 @@ public interface WeatherInputBoundary {
      */
     void execute(WeatherInputData weatherInputData);
 
+    void switchToLoggedInView();
 }

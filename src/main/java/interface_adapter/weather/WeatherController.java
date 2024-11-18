@@ -23,5 +23,9 @@ public class WeatherController {
 
         weatherUseCaseInteractor.execute(weatherInputData);
     }
+
+    public void switchToLoggedInView() {
+        weatherUseCaseInteractor.switchToLoggedInView();
+    }
 }
 

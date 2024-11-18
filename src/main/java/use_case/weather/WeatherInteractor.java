@@ -46,4 +46,9 @@ public class WeatherInteractor implements WeatherInputBoundary {
             weatherPresenter.prepareFailView("Please enter a city name.");
         }
     }
+
+    @Override
+    public void switchToLoggedInView() {
+        weatherPresenter.switchToLoggedInView();
+    }
 }
