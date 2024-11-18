@@ -1,56 +1,49 @@
 package interface_adapter.weather;
 
-import interface_adapter.ViewModel;
-import use_case.weather.WeatherInputBoundary;
-import use_case.weather.WeatherInputData;
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import interface_adapter.ViewModel;
+
+/**
+ * The View Model for the Weather View.
+ */
 public class WeatherViewModel extends ViewModel<WeatherState> {
 
-    private final WeatherInputBoundary weatherInteractor;
-    private final PropertyChangeSupport propertyChangeSupport;
+    public static final String TITLE_LABEL = "Weather Screen";
+    public static final String CITY_LABEL = "City Name";
+    public static final String GET_WEATHER_BUTTON_LABEL = "Get Weather";
+    public static final String TEMPERATURE_LABEL = "Temperature: ";
+    public static final String CONDITION_LABEL = "Condition: ";
+    public static final String CITY_INFO_LABEL = "City: ";
+    public static final String SETTINGS_LABEL = "Settings";
 
-    // Constructor that takes the WeatherInteractor
-    public WeatherViewModel(WeatherInputBoundary weatherInteractor) {
+    private WeatherState state = new WeatherState();
+
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+
+    public WeatherViewModel() {
         super("weather");
-        this.weatherInteractor = weatherInteractor;
-        this.propertyChangeSupport = new PropertyChangeSupport(this);
-        setState(new WeatherState());
     }
 
-    // Method to initiate fetching weather data
-    public void fetchWeatherData(String cityName) {
-        if (cityName == null || cityName.trim().isEmpty()) {
-            updateStateWithError("Invalid City.");
-            return;
-        }
-
-        // Create a WeatherInputData object and pass it to the interactor
-        final WeatherInputData inputData = new WeatherInputData(cityName);
-        weatherInteractor.execute(inputData);
+    public void setState(WeatherState state) {
+        final WeatherState oldState = this.state;
+        this.state = state;
+        support.firePropertyChange("state", oldState, this.state);
     }
 
-    // Method to update the state with weather data (to be called by the presenter)
-    public void updateStateWithWeatherData(String city, String temperature, String condition) {
-        WeatherState state = getState();
-        state.setCity(city);
-        state.setTemperature(temperature);
-        state.setCondition(condition);
-        setState(state);
-        propertyChangeSupport.firePropertyChange("weatherState", null, state);
+    public WeatherState getState() {
+        return this.state;
     }
 
-    // Method to update the state with an error message (to be called by the presenter)
-    public void updateStateWithError(String errorMessage) {
-        WeatherState state = getState();
-        state.setErrorMessage(errorMessage);
-        setState(state);
-        propertyChangeSupport.firePropertyChange("weatherState", null, state);
+    @Override
+    public void firePropertyChanged() {
+        support.firePropertyChange("state", null, this.state);
     }
 
-    // Getter for PropertyChangeSupport
-    public PropertyChangeSupport getPropertyChangeSupport() {
-        return propertyChangeSupport;
+    @Override
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
     }
+
 }
-

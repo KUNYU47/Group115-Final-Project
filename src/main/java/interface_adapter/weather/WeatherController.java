@@ -8,10 +8,10 @@ import use_case.weather.WeatherInputData;
  */
 public class WeatherController {
 
-    private final WeatherInputBoundary userWeatherUseCaseInteractor;
+    private final WeatherInputBoundary weatherUseCaseInteractor;
 
     public WeatherController(WeatherInputBoundary userWeatherUseCaseInteractor) {
-        this.userWeatherUseCaseInteractor = userWeatherUseCaseInteractor;
+        this.weatherUseCaseInteractor = userWeatherUseCaseInteractor;
     }
 
     /**
@@ -19,10 +19,9 @@ public class WeatherController {
      * @param city the city we are referring.
      */
     public void execute(String city) {
-        final WeatherInputData WeatherInputData = new WeatherInputData(
-                city);
+        final WeatherInputData weatherInputData = new WeatherInputData(city);
 
-        userWeatherUseCaseInteractor.execute(WeatherInputData);
+        weatherUseCaseInteractor.execute(weatherInputData);
     }
 }
 

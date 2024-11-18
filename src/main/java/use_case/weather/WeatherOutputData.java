@@ -31,7 +31,7 @@ public class WeatherOutputData {
     }
 
     public String getCondition() {
-        return getWeather(this.currWeatherData.getJSONObject("weather"));
+        return getWeather(this.currWeatherData.getJSONArray("weather").getJSONObject(0));
     }
 
     private String getWeather(JSONObject weather) {

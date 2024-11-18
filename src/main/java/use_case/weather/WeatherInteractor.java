@@ -8,6 +8,7 @@ import org.json.JSONObject;
 public class WeatherInteractor implements WeatherInputBoundary {
     private final WeatherDataAccessInterface weatherDataAccessObject;
     private final WeatherOutputBoundary weatherPresenter;
+    private final String emptyString = "";
 
     public WeatherInteractor(WeatherDataAccessInterface weatherDataAccessObject,
                              WeatherOutputBoundary weatherPresenter) {
@@ -19,22 +20,22 @@ public class WeatherInteractor implements WeatherInputBoundary {
     public void execute(WeatherInputData weatherInputData) {
         final String inputCity = weatherInputData.getCity();
 
-        if (inputCity != null) {
+        if (!emptyString.equals(inputCity)) {
             final JSONObject city = this.weatherDataAccessObject.getCoordinates(inputCity);
 
-            if (city != null) {
+            if (!city.isEmpty()) {
                 final double lat = city.getDouble("lat");
                 final double lon = city.getDouble("lon");
 
                 // Fetch weather data using the coordinates
                 final JSONObject weatherData = this.weatherDataAccessObject.getWeatherData(lat, lon);
 
-                final WeatherOutputData response = new WeatherOutputData(
+                final WeatherOutputData outputData = new WeatherOutputData(
                         weatherData.getJSONObject("current"),
                         city.getString("name"),
                         false);
 
-                weatherPresenter.prepareSuccessView(response);
+                weatherPresenter.prepareSuccessView(outputData);
 
             }
             else {
@@ -42,7 +43,7 @@ public class WeatherInteractor implements WeatherInputBoundary {
             }
         }
         else {
-            weatherPresenter.prepareFailView("Invalid City.");
+            weatherPresenter.prepareFailView("Please enter a city name.");
         }
     }
 }

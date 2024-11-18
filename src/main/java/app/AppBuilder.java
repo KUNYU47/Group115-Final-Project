@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import data_access.InMemoryUserDataAccessObject;
+import data_access.WeatherDataAccessObject;
 import entity.CommonUserFactory;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
@@ -21,6 +22,9 @@ import interface_adapter.logout.LogoutPresenter;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
+import interface_adapter.weather.WeatherController;
+import interface_adapter.weather.WeatherPresenter;
+import interface_adapter.weather.WeatherViewModel;
 import use_case.change_password.ChangePasswordInputBoundary;
 import use_case.change_password.ChangePasswordInteractor;
 import use_case.change_password.ChangePasswordOutputBoundary;
@@ -33,10 +37,11 @@ import use_case.logout.LogoutOutputBoundary;
 import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
-import view.LoggedInView;
-import view.LoginView;
-import view.SignupView;
-import view.ViewManager;
+import use_case.weather.WeatherDataAccessInterface;
+import use_case.weather.WeatherInputBoundary;
+import use_case.weather.WeatherInteractor;
+import use_case.weather.WeatherOutputBoundary;
+import view.*;
 
 /**
  * The AppBuilder class is responsible for putting together the pieces of
@@ -62,10 +67,12 @@ public class AppBuilder {
 
     private SignupView signupView;
     private SignupViewModel signupViewModel;
-    private LoginViewModel loginViewModel;
-    private LoggedInViewModel loggedInViewModel;
-    private LoggedInView loggedInView;
     private LoginView loginView;
+    private LoginViewModel loginViewModel;
+    private LoggedInView loggedInView;
+    private LoggedInViewModel loggedInViewModel;
+    private WeatherView weatherView;
+    private WeatherViewModel weatherViewModel;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
@@ -105,6 +112,17 @@ public class AppBuilder {
     }
 
     /**
+     * Adds the Weather View to the application.
+     * @return this builder.
+     */
+    public AppBuilder addWeatherView() {
+        weatherViewModel = new WeatherViewModel();
+        weatherView = new WeatherView(weatherViewModel);
+        cardPanel.add(weatherView, weatherView.getViewName());
+        return this;
+    }
+
+    /**
      * Adds the Signup Use Case to the application.
      * @return this builder
      */
@@ -125,7 +143,7 @@ public class AppBuilder {
      */
     public AppBuilder addLoginUseCase() {
         final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel,
-                loggedInViewModel, loginViewModel);
+                loggedInViewModel, weatherViewModel, loginViewModel);
         final LoginInputBoundary loginInteractor = new LoginInteractor(
                 userDataAccessObject, loginOutputBoundary);
 
@@ -164,6 +182,24 @@ public class AppBuilder {
 
         final LogoutController logoutController = new LogoutController(logoutInteractor);
         loggedInView.setLogoutController(logoutController);
+        return this;
+    }
+
+    /**
+     * Adds the Weather Use Case to the application.
+     * @return this builder
+     */
+    public AppBuilder addWeatherUseCase() {
+        final WeatherOutputBoundary weatherOutputBoundary = new WeatherPresenter(viewManagerModel,
+                weatherViewModel);
+
+        final WeatherDataAccessInterface weatherDataAccessObject = new WeatherDataAccessObject();
+
+        final WeatherInputBoundary weatherInteractor =
+                new WeatherInteractor(weatherDataAccessObject, weatherOutputBoundary);
+
+        final WeatherController weatherController = new WeatherController(weatherInteractor);
+        weatherView.setWeatherController(weatherController);
         return this;
     }
 

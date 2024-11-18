@@ -1,45 +1,40 @@
 package interface_adapter.weather;
 
+/**
+ * The State information representing the weather information.
+ */
 public class WeatherState {
     private String city;
     private double temperature;
     private String condition;
     private String errorMessage;
 
-    public void setCity(Object city) {
-        if (city instanceof String) {
-            this.city = (String) city;
-        }
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setTemperature(double temp) {
+        this.temperature = temp;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setTemperature(Object temp) {
-        if (temp instanceof Number) {
-            this.temperature = ((Number) temp).doubleValue();
-        }
-    }
-
-    public double getTemperature() {
-        return temperature;
-    }
-
-    public void setCondition(Object condition) {
-        if (condition instanceof String) {
-            this.condition = (String) condition;
-        }
+    public String getTemperature() {
+        return String.valueOf(temperature);
     }
 
     public String getCondition() {
         return condition;
-    }
-
-    public void setErrorMessage(Object errorMessage) {
-        if (errorMessage instanceof String) {
-            this.errorMessage = (String) errorMessage;
-        }
     }
 
     public String getErrorMessage() {
