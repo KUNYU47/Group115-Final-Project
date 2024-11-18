@@ -10,6 +10,9 @@ import org.json.JSONObject;
 
 import use_case.weather.WeatherDataAccessInterface;
 
+/**
+ * The DAO for weather data.
+ */
 public class WeatherDataAccessObject implements WeatherDataAccessInterface {
     private static final String API_KEY;
 

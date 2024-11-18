@@ -26,6 +26,7 @@ public class WeatherViewModel extends ViewModel<WeatherState> {
         super("weather");
     }
 
+    @Override
     public void setState(WeatherState state) {
         final WeatherState oldState = this.state;
         this.state = state;

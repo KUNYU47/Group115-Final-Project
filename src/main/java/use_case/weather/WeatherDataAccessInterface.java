@@ -2,6 +2,9 @@ package use_case.weather;
 
 import org.json.JSONObject;
 
+/**
+ * DAO for the Weather Use Case.
+ */
 public interface WeatherDataAccessInterface {
 
     /**

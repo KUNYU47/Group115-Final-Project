@@ -15,7 +15,7 @@ public class WeatherController {
     }
 
     /**
-     * Executes the Signup Use Case.
+     * Executes the Weather Use Case.
      * @param city the city we are referring.
      */
     public void execute(String city) {
@@ -24,6 +24,9 @@ public class WeatherController {
         weatherUseCaseInteractor.execute(weatherInputData);
     }
 
+    /**
+     * Executes the "switch to Logged In View" Use Case.
+     */
     public void switchToLoggedInView() {
         weatherUseCaseInteractor.switchToLoggedInView();
     }

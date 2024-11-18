@@ -1,7 +1,6 @@
 package interface_adapter.weather;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.change_password.LoggedInState;
 import interface_adapter.change_password.LoggedInViewModel;
 import use_case.weather.WeatherOutputBoundary;
 import use_case.weather.WeatherOutputData;

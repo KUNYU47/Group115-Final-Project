@@ -1,7 +1,8 @@
 package use_case.weather;
 
-import use_case.login.LoginOutputData;
-
+/**
+ * The output boundary for the Weather Use Case.
+ */
 public interface WeatherOutputBoundary {
     /**
      * Prepares the success view for the Weather Use Case.
@@ -15,5 +16,8 @@ public interface WeatherOutputBoundary {
      */
     void prepareFailView(String errorMessage);
 
+    /**
+     * Switches to the Logged in View.
+     */
     void switchToLoggedInView();
 }
