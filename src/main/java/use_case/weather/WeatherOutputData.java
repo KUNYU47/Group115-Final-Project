@@ -23,14 +23,7 @@ public class WeatherOutputData {
     }
 
     public double getTemperature() {
-        return tempConverter(currWeatherData.getDouble("temp"));
-    }
-
-    private double tempConverter(double fahrenheit) {
-        final double constant = 5.0 / 9.0;
-        final double constant2 = 32;
-
-        return (fahrenheit - constant2) * constant;
+        return currWeatherData.getDouble("temp");
     }
 
     public String getCity() {

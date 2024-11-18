@@ -25,7 +25,7 @@ public class WeatherDataAccessObject implements WeatherDataAccessInterface {
      */
     public JSONObject getWeatherData(double latitude, double longitude) {
         final String urlString = String.format(
-                "https://api.openweathermap.org/data/3.0/onecall?lat=%f&lon=%f&exclude=minutely,hourly&appid=%s",
+                "https://api.openweathermap.org/data/3.0/onecall?lat=%f&lon=%f&units=metric&appid=%s",
                 latitude, longitude, API_KEY
         );
 

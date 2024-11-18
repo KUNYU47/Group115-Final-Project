@@ -26,7 +26,7 @@ public class WeatherViewModel extends ViewModel<WeatherState> {
         }
 
         // Create a WeatherInputData object and pass it to the interactor
-        WeatherInputData inputData = new WeatherInputData(cityName);
+        final WeatherInputData inputData = new WeatherInputData(cityName);
         weatherInteractor.execute(inputData);
     }
 
