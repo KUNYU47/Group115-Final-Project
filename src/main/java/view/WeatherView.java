@@ -98,7 +98,7 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
     }
 
     private void setFields(WeatherState state) {
-        cityNameInputField.setText(state.getCity());
+        cityNameInputField.setText("");
         cityLabel.setText(WeatherViewModel.CITY_INFO_LABEL + state.getCity());
         temperatureLabel.setText(WeatherViewModel.TEMPERATURE_LABEL + state.getTemperature());
         conditionLabel.setText(WeatherViewModel.CONDITION_LABEL + state.getCondition());
