@@ -25,6 +25,9 @@ import interface_adapter.signup.SignupViewModel;
 import interface_adapter.weather.WeatherController;
 import interface_adapter.weather.WeatherPresenter;
 import interface_adapter.weather.WeatherViewModel;
+import interface_adapter.weather_hourly.WeatherHourlyController;
+import interface_adapter.weather_hourly.WeatherHourlyPresenter;
+import interface_adapter.weather_hourly.WeatherHourlyViewModel;
 import use_case.change_password.ChangePasswordInputBoundary;
 import use_case.change_password.ChangePasswordInteractor;
 import use_case.change_password.ChangePasswordOutputBoundary;
@@ -41,6 +44,10 @@ import use_case.weather.WeatherDataAccessInterface;
 import use_case.weather.WeatherInputBoundary;
 import use_case.weather.WeatherInteractor;
 import use_case.weather.WeatherOutputBoundary;
+import use_case.weather_hourly.WeatherHourlyDataAccessInterface;
+import use_case.weather_hourly.WeatherHourlyInputBoundary;
+import use_case.weather_hourly.WeatherHourlyInteractor;
+import use_case.weather_hourly.WeatherHourlyOutputBoundary;
 import view.*;
 
 /**
@@ -73,6 +80,8 @@ public class AppBuilder {
     private LoggedInViewModel loggedInViewModel;
     private WeatherView weatherView;
     private WeatherViewModel weatherViewModel;
+    private WeatherHourlyView weatherHourlyView;
+    private WeatherHourlyViewModel weatherHourlyViewModel;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
@@ -119,6 +128,13 @@ public class AppBuilder {
         weatherViewModel = new WeatherViewModel();
         weatherView = new WeatherView(weatherViewModel);
         cardPanel.add(weatherView, weatherView.getViewName());
+        return this;
+    }
+
+    public AppBuilder addWeatherHourlyView() {
+        weatherHourlyViewModel = new WeatherHourlyViewModel();
+        weatherHourlyView = new WeatherHourlyView(weatherHourlyViewModel);
+        cardPanel.add(weatherHourlyView, weatherHourlyView.getViewName());
         return this;
     }
 
@@ -190,8 +206,11 @@ public class AppBuilder {
      * @return this builder
      */
     public AppBuilder addWeatherUseCase() {
-        final WeatherOutputBoundary weatherOutputBoundary = new WeatherPresenter(viewManagerModel,
-                weatherViewModel, loggedInViewModel);
+        final WeatherOutputBoundary weatherOutputBoundary =
+                new WeatherPresenter(viewManagerModel,
+                                     weatherViewModel,
+                                     weatherHourlyViewModel,
+                                     loggedInViewModel);
 
         final WeatherDataAccessInterface weatherDataAccessObject = new WeatherDataAccessObject();
 
@@ -200,6 +219,23 @@ public class AppBuilder {
 
         final WeatherController weatherController = new WeatherController(weatherInteractor);
         weatherView.setWeatherController(weatherController);
+        return this;
+    }
+
+    public AppBuilder addWeatherHourlyUseCase() {
+        final WeatherHourlyOutputBoundary weatherHourlyOutputBoundary =
+                new WeatherHourlyPresenter(viewManagerModel,
+                                           weatherViewModel,
+                                           weatherHourlyViewModel,
+                                           loggedInViewModel);
+
+        final WeatherHourlyDataAccessInterface weatherHourlyDataAccessObject = new WeatherDataAccessObject();
+
+        final WeatherHourlyInputBoundary weatherHourlyInteractor =
+                new WeatherHourlyInteractor(weatherHourlyDataAccessObject, weatherHourlyOutputBoundary);
+
+        final WeatherHourlyController weatherHourlyController = new WeatherHourlyController(weatherHourlyInteractor);
+        weatherHourlyView.setWeatherController(weatherHourlyController);
         return this;
     }
 
