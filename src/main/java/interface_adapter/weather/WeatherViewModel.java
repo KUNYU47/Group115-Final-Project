@@ -17,6 +17,9 @@ public class WeatherViewModel extends ViewModel<WeatherState> {
     public static final String CONDITION_LABEL = "Condition: ";
     public static final String CITY_INFO_LABEL = "City: ";
     public static final String SETTINGS_LABEL = "Settings";
+    public static final String CURRENT = "Current";
+    public static final String HOURLY = "Hourly";
+    public static final String DAILY = "Daily";
 
     private WeatherState state = new WeatherState();
 

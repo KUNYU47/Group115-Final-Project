@@ -30,5 +30,19 @@ public class WeatherController {
     public void switchToLoggedInView() {
         weatherUseCaseInteractor.switchToLoggedInView();
     }
+
+    /**
+     * Executes the switch to hourly forecast view use case.
+     */
+    public void switchToHourlyView() {
+        weatherUseCaseInteractor.switchToHourlyView();
+    }
+
+    /**
+     * Executes the switch to daily forecast view use case.
+     */
+    public void switchToDailyView() {
+        weatherUseCaseInteractor.switchToDailyView();
+    }
 }
 

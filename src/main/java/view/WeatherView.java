@@ -39,8 +39,21 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
         final JLabel title = new JLabel(WeatherViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        // Create input field for city name.
         final LabelTextPanel cityInputPanel = new LabelTextPanel(
                 new JLabel(WeatherViewModel.CITY_LABEL), cityNameInputField);
+
+        // Create drop-down menu to switch between modes.
+        final String[] modeOptions = new String[] {WeatherViewModel.CURRENT,
+                                                   WeatherViewModel.HOURLY,
+                                                   WeatherViewModel.DAILY};
+        final JComboBox modeComboBox = new JComboBox(modeOptions);
+
+        // Create a panel to combine city input field and the drop-down menu.
+        final JPanel cityInputPlusModePanel = new JPanel();
+        cityInputPlusModePanel.setLayout(new BoxLayout(cityInputPlusModePanel, BoxLayout.X_AXIS));
+        cityInputPlusModePanel.add(cityInputPanel);
+        cityInputPlusModePanel.add(modeComboBox);
 
         final JPanel weatherInfoPanel = new JPanel();
         weatherInfoPanel.setLayout(new BoxLayout(weatherInfoPanel, BoxLayout.Y_AXIS));
@@ -71,10 +84,28 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
                     }
                 });
 
+        modeComboBox.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        final String mode = (String) modeComboBox.getSelectedItem();
+                        if (mode.equals(WeatherViewModel.HOURLY)) {
+                            weatherController.switchToHourlyView();
+                            JOptionPane.showMessageDialog(WeatherView.this,
+                                    "Oops! Hourly view is not implemented yet.");
+                        }
+                        else if (mode.equals(WeatherViewModel.DAILY)) {
+                            weatherController.switchToDailyView();
+                            JOptionPane.showMessageDialog(WeatherView.this,
+                                    "Oops! Daily view is not implemented yet.");
+                        }
+                    }
+                }
+        );
+
         // Set up the main layout
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
-        this.add(cityInputPanel);
+        this.add(cityInputPlusModePanel);
         this.add(buttons);
         this.add(weatherInfoPanel);
     }
@@ -83,6 +114,7 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
      * React to a button click that results in evt.
      * @param evt the ActionEvent to react to
      */
+    // Note that this method is un used thus can be deleted.
     public void actionPerformed(ActionEvent evt) {
         JOptionPane.showMessageDialog(this, "Settings not implemented yet.");
     }

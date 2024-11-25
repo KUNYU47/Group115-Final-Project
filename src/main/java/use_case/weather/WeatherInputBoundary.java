@@ -15,4 +15,14 @@ public interface WeatherInputBoundary {
      * Executes the switch to logged in view use case.
      */
     void switchToLoggedInView();
+
+    /**
+     * Executes the switch to hourly forecast view use case.
+     */
+    void switchToHourlyView();
+
+    /**
+     * Executes the switch to daily forecast view use case.
+     */
+    void switchToDailyView();
 }

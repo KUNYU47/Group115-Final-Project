@@ -51,4 +51,15 @@ public class WeatherInteractor implements WeatherInputBoundary {
     public void switchToLoggedInView() {
         weatherPresenter.switchToLoggedInView();
     }
+
+    @Override
+    public void switchToHourlyView() {
+        weatherPresenter.switchToHourlyView();
+    }
+
+    @Override
+    public void switchToDailyView() {
+        weatherPresenter.switchToDailyView();
+    }
+
 }

@@ -20,4 +20,14 @@ public interface WeatherOutputBoundary {
      * Switches to the Logged in View.
      */
     void switchToLoggedInView();
+
+    /**
+     * Switches to the hourly forecast view use case.
+     */
+    void switchToHourlyView();
+
+    /**
+     * Switches to the daily forecast view use case.
+     */
+    void switchToDailyView();
 }

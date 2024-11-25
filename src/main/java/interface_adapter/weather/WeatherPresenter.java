@@ -52,4 +52,17 @@ public class WeatherPresenter implements WeatherOutputBoundary {
         viewManagerModel.setState(loggedInViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
+
+    @Override
+    public void switchToHourlyView() {
+        viewManagerModel.setState();
+        viewManagerModel.firePropertyChanged();
+    }
+
+    @Override
+    public void switchToDailyView() {
+        viewManagerModel.setState();
+        viewManagerModel.firePropertyChanged();
+    }
+
 }
