@@ -7,6 +7,7 @@ public class WeatherState {
     private String city;
     private double temperature;
     private String condition;
+
     private String errorMessage;
 
     public void setCity(String city) {

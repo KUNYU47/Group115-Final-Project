@@ -8,6 +8,7 @@ public class WeatherDailyState {
     private double temperature;
     private String condition;
     private String summary;
+
     private String errorMessage;
 
     public void setCity(String city) {

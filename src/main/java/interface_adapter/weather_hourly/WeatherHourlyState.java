@@ -7,6 +7,7 @@ public class WeatherHourlyState {
     private String city;
     private double temperature;
     private String condition;
+
     private String errorMessage;
 
     public void setCity(String city) {

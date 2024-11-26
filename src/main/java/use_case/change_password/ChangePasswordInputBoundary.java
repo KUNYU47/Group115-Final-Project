@@ -11,4 +11,19 @@ public interface ChangePasswordInputBoundary {
      */
     void execute(ChangePasswordInputData changePasswordInputData);
 
+    /**
+     * Executes the "switch to Logged In View" Use Case.
+     */
+    void switchToCurrView();
+
+    /**
+     * Executes the switch to hourly forecast view use case.
+     */
+    void switchToHourlyView();
+
+    /**
+     * Executes the switch to daily forecast view use case.
+     */
+    void switchToDailyView();
+
 }

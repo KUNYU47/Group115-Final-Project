@@ -88,9 +88,25 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
             }
         });
 
-//        goBack.addActionListener(
-//                new ActionListener(ActionEvent evt) {
-//        })
+        goBack.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        final String lastView = loggedInViewModel.getState().getLastView();
+                        switch (lastView) {
+                            case "weather":
+                                changePasswordController.switchToCurrInView();
+                                break;
+                            case "weather hourly":
+                                changePasswordController.switchToHourlyView();
+                                break;
+                            case "weather daily":
+                                changePasswordController.switchToDailyView();
+                                break;
+                            default:
+                                // This condition will never be met.
+                        }
+                    }
+                });
 
         changePassword.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
