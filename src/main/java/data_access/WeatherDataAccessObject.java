@@ -9,13 +9,15 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import use_case.weather.WeatherDataAccessInterface;
+import use_case.weather_daily.WeatherDailyDataAccessInterface;
 import use_case.weather_hourly.WeatherHourlyDataAccessInterface;
 
 /**
  * The DAO for weather data.
  */
 public class WeatherDataAccessObject implements WeatherDataAccessInterface,
-                                                WeatherHourlyDataAccessInterface {
+                                                WeatherHourlyDataAccessInterface,
+                                                WeatherDailyDataAccessInterface {
     private static final String API_KEY;
 
     static {
