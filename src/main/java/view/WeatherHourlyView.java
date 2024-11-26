@@ -93,8 +93,6 @@ public class WeatherHourlyView extends JPanel implements ActionListener, Propert
                         }
                         else if (mode.equals(WeatherHourlyViewModel.DAILY)) {
                             weatherController.switchToDailyView();
-                            JOptionPane.showMessageDialog(WeatherHourlyView.this,
-                                    "Oops! Daily view is not implemented yet.");
                         }
                     }
                 }

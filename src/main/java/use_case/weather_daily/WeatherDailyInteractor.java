@@ -8,6 +8,7 @@ public class WeatherDailyInteractor implements WeatherDailyInputBoundary {
     private final WeatherDailyOutputBoundary weatherPresenter;
     private final String emptyString = "";
     private final int dummyInt = -1;
+    private final int upperBound = 7;
 
     public WeatherDailyInteractor(WeatherDailyDataAccessInterface weatherDailyDataAccessObject,
                                   WeatherDailyOutputBoundary weatherPresenter) {
@@ -46,7 +47,7 @@ public class WeatherDailyInteractor implements WeatherDailyInputBoundary {
                     weatherPresenter.prepareSuccessView(outputData);
                 }
                 else {
-                    weatherPresenter.prepareFailView("Please enter a valid day between 0 to 7.");
+                    weatherPresenter.prepareFailView("Please enter a valid day between 0 and 7.");
                 }
             }
             else {
@@ -62,7 +63,7 @@ public class WeatherDailyInteractor implements WeatherDailyInputBoundary {
         boolean valid;
         try {
             Integer.parseInt(day);
-            valid = true;
+            valid = 0 <= Integer.parseInt(day) && Integer.parseInt(day) <= this.upperBound;
         }
         catch (NumberFormatException exception) {
             valid = false;

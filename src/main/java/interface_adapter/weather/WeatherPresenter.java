@@ -2,6 +2,7 @@ package interface_adapter.weather;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.change_password.LoggedInViewModel;
+import interface_adapter.weather_daily.WeatherDailyViewModel;
 import interface_adapter.weather_hourly.WeatherHourlyViewModel;
 import use_case.weather.WeatherOutputBoundary;
 import use_case.weather.WeatherOutputData;
@@ -13,16 +14,19 @@ public class WeatherPresenter implements WeatherOutputBoundary {
 
     private final WeatherViewModel weatherViewModel;
     private final WeatherHourlyViewModel weatherHourlyViewModel;
+    private final WeatherDailyViewModel weatherDailyViewModel;
     private final LoggedInViewModel loggedInViewModel;
     private final ViewManagerModel viewManagerModel;
 
     public WeatherPresenter(ViewManagerModel viewManagerModel,
                             WeatherViewModel weatherViewModel,
                             WeatherHourlyViewModel weatherHourlyViewModel,
+                            WeatherDailyViewModel weatherDailyViewModel,
                             LoggedInViewModel loggedInViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.weatherViewModel = weatherViewModel;
         this.weatherHourlyViewModel = weatherHourlyViewModel;
+        this.weatherDailyViewModel = weatherDailyViewModel;
         this.loggedInViewModel = loggedInViewModel;
     }
 
@@ -65,7 +69,7 @@ public class WeatherPresenter implements WeatherOutputBoundary {
 
     @Override
     public void switchToDailyView() {
-//        viewManagerModel.setState();
+        viewManagerModel.setState(weatherDailyViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 

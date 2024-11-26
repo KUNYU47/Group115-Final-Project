@@ -67,6 +67,4 @@ public class WeatherDailyPresenter implements WeatherDailyOutputBoundary {
         viewManagerModel.setState(weatherHourlyViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
-
-
 }

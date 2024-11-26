@@ -101,13 +101,9 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
                         final String mode = (String) modeComboBox.getSelectedItem();
                         if (mode.equals(WeatherViewModel.HOURLY)) {
                             weatherDailyController.switchToHourlyView();
-                            JOptionPane.showMessageDialog(WeatherDailyView.this,
-                                    "Oops! Hourly view is not implemented yet.");
                         }
                         else if (mode.equals(WeatherViewModel.CURRENT)) {
                             weatherDailyController.switchToCurrView();
-                            JOptionPane.showMessageDialog(WeatherDailyView.this,
-                                    "Oops! Daily view is not implemented yet.");
                         }
                     }
                 }
