@@ -11,6 +11,7 @@ import javax.swing.*;
 import interface_adapter.weather.WeatherController;
 import interface_adapter.weather.WeatherState;
 import interface_adapter.weather.WeatherViewModel;
+import interface_adapter.weather_daily.WeatherDailyViewModel;
 
 /**
  * The View for when the user is on Weather Use Case.
@@ -48,6 +49,7 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
                                                    WeatherViewModel.HOURLY,
                                                    WeatherViewModel.DAILY};
         final JComboBox modeComboBox = new JComboBox(modeOptions);
+        modeComboBox.setSelectedItem(WeatherDailyViewModel.CURRENT);
 
         // Create a panel to combine city input field and the drop-down menu.
         final JPanel cityInputPlusModePanel = new JPanel();
@@ -94,6 +96,7 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
                         else if (mode.equals(WeatherViewModel.DAILY)) {
                             weatherController.switchToDailyView();
                         }
+                        modeComboBox.setSelectedItem(WeatherDailyViewModel.CURRENT);
                     }
                 }
         );

@@ -8,6 +8,7 @@ import java.beans.PropertyChangeListener;
 
 import javax.swing.*;
 
+import interface_adapter.weather_daily.WeatherDailyViewModel;
 import interface_adapter.weather_hourly.WeatherHourlyController;
 import interface_adapter.weather_hourly.WeatherHourlyState;
 import interface_adapter.weather_hourly.WeatherHourlyViewModel;
@@ -48,6 +49,7 @@ public class WeatherHourlyView extends JPanel implements ActionListener, Propert
                                                    WeatherHourlyViewModel.HOURLY,
                                                    WeatherHourlyViewModel.DAILY};
         final JComboBox modeComboBox = new JComboBox(modeOptions);
+        modeComboBox.setSelectedItem(WeatherDailyViewModel.HOURLY);
 
         // Create a panel to combine city input field and the drop-down menu.
         final JPanel cityInputPlusModePanel = new JPanel();
@@ -94,6 +96,7 @@ public class WeatherHourlyView extends JPanel implements ActionListener, Propert
                         else if (mode.equals(WeatherHourlyViewModel.DAILY)) {
                             weatherController.switchToDailyView();
                         }
+                        modeComboBox.setSelectedItem(WeatherDailyViewModel.HOURLY);
                     }
                 }
         );

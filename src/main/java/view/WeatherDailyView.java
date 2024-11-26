@@ -57,6 +57,7 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
                                                    WeatherDailyViewModel.HOURLY,
                                                    WeatherDailyViewModel.DAILY};
         final JComboBox modeComboBox = new JComboBox(modeOptions);
+        modeComboBox.setSelectedItem(WeatherDailyViewModel.DAILY);
 
         // Create a panel to combine city input field and the drop-down menu.
         final JPanel cityInputPlusModePanel = new JPanel();
@@ -105,6 +106,7 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
                         else if (mode.equals(WeatherViewModel.CURRENT)) {
                             weatherDailyController.switchToCurrView();
                         }
+                        modeComboBox.setSelectedItem(WeatherDailyViewModel.DAILY);
                     }
                 }
         );

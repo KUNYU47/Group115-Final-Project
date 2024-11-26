@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -32,6 +34,7 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
     private final JLabel username;
 
     private final JButton logOut;
+    private final JButton goBack;
 
     private final JTextField passwordInputField = new JTextField(15);
     private final JButton changePassword;
@@ -50,6 +53,9 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
         username = new JLabel();
 
         final JPanel buttons = new JPanel();
+        goBack = new JButton("Go Back");
+        buttons.add(goBack);
+
         logOut = new JButton("Log Out");
         buttons.add(logOut);
 
@@ -81,6 +87,10 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
                 documentListenerHelper();
             }
         });
+
+//        goBack.addActionListener(
+//                new ActionListener(ActionEvent evt) {
+//        })
 
         changePassword.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
