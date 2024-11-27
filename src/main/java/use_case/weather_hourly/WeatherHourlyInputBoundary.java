@@ -1,15 +1,15 @@
-package use_case.weather;
+package use_case.weather_hourly;
 
 /**
  * Input boundary for actions which are related with to weather.
  */
-public interface WeatherInputBoundary {
+public interface WeatherHourlyInputBoundary {
 
     /**
      * Execute the weather use case.
-     * @param weatherInputData the input data
+     * @param weatherHourlyInputData the input data
      */
-    void execute(WeatherInputData weatherInputData);
+    void execute(WeatherHourlyInputData weatherHourlyInputData);
 
     /**
      * Executes the switch to logged in view use case.
@@ -19,7 +19,7 @@ public interface WeatherInputBoundary {
     /**
      * Executes the switch to hourly forecast view use case.
      */
-    void switchToHourlyView();
+    void switchToCurrView();
 
     /**
      * Executes the switch to daily forecast view use case.

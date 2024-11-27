@@ -1,16 +1,12 @@
-package interface_adapter.weather;
+package interface_adapter.weather_hourly;
 
-import use_case.weather.WeatherInputBoundary;
-import use_case.weather.WeatherInputData;
+import use_case.weather_hourly.WeatherHourlyInputBoundary;
+import use_case.weather_hourly.WeatherHourlyInputData;
 
-/**
- * Controller for the Signup Use Case.
- */
-public class WeatherController {
+public class WeatherHourlyController {
+    private final WeatherHourlyInputBoundary weatherUseCaseInteractor;
 
-    private final WeatherInputBoundary weatherUseCaseInteractor;
-
-    public WeatherController(WeatherInputBoundary userWeatherUseCaseInteractor) {
+    public WeatherHourlyController(WeatherHourlyInputBoundary userWeatherUseCaseInteractor) {
         this.weatherUseCaseInteractor = userWeatherUseCaseInteractor;
     }
 
@@ -19,7 +15,7 @@ public class WeatherController {
      * @param city the city we are referring.
      */
     public void execute(String city) {
-        final WeatherInputData weatherInputData = new WeatherInputData(city);
+        final WeatherHourlyInputData weatherInputData = new WeatherHourlyInputData(city);
 
         weatherUseCaseInteractor.execute(weatherInputData);
     }
@@ -34,8 +30,8 @@ public class WeatherController {
     /**
      * Executes the switch to hourly forecast view use case.
      */
-    public void switchToHourlyView() {
-        weatherUseCaseInteractor.switchToHourlyView();
+    public void switchToCurrView() {
+        weatherUseCaseInteractor.switchToCurrView();
     }
 
     /**
@@ -45,4 +41,3 @@ public class WeatherController {
         weatherUseCaseInteractor.switchToDailyView();
     }
 }
-

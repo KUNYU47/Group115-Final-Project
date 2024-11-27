@@ -1,9 +1,9 @@
-package interface_adapter.weather;
+package interface_adapter.weather_hourly;
 
 /**
  * The State information representing the weather information.
  */
-public class WeatherState {
+public class WeatherHourlyState {
     private String city;
     private double temperature;
     private String condition;

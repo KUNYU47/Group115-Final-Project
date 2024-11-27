@@ -1,5 +1,9 @@
 package interface_adapter.change_password;
 
+import interface_adapter.ViewManagerModel;
+import interface_adapter.weather.WeatherViewModel;
+import interface_adapter.weather_daily.WeatherDailyViewModel;
+import interface_adapter.weather_hourly.WeatherHourlyViewModel;
 import use_case.change_password.ChangePasswordOutputBoundary;
 import use_case.change_password.ChangePasswordOutputData;
 
@@ -8,10 +12,22 @@ import use_case.change_password.ChangePasswordOutputData;
  */
 public class ChangePasswordPresenter implements ChangePasswordOutputBoundary {
 
+    private final WeatherViewModel weatherViewModel;
+    private final WeatherHourlyViewModel weatherHourlyViewModel;
+    private final WeatherDailyViewModel weatherDailyViewModel;
     private final LoggedInViewModel loggedInViewModel;
+    private final ViewManagerModel viewManagerModel;
 
-    public ChangePasswordPresenter(LoggedInViewModel loggedInViewModel) {
+    public ChangePasswordPresenter(WeatherViewModel weatherViewModel,
+                                   WeatherHourlyViewModel weatherHourlyViewModel,
+                                   WeatherDailyViewModel weatherDailyViewModel,
+                                   LoggedInViewModel loggedInViewModel,
+                                   ViewManagerModel viewManagerModel) {
+        this.weatherViewModel = weatherViewModel;
+        this.weatherHourlyViewModel = weatherHourlyViewModel;
+        this.weatherDailyViewModel = weatherDailyViewModel;
         this.loggedInViewModel = loggedInViewModel;
+        this.viewManagerModel = viewManagerModel;
     }
 
     @Override
@@ -27,5 +43,20 @@ public class ChangePasswordPresenter implements ChangePasswordOutputBoundary {
     @Override
     public void prepareFailView(String error) {
         // note: this use case currently can't fail
+    }
+
+    public void switchToCurrView() {
+        viewManagerModel.setState(weatherViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+    }
+
+    public void switchToHourlyView() {
+        viewManagerModel.setState(weatherHourlyViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+    }
+
+    public void switchToDailyView() {
+        viewManagerModel.setState(weatherDailyViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 }

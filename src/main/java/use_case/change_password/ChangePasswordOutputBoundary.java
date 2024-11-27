@@ -15,4 +15,19 @@ public interface ChangePasswordOutputBoundary {
      * @param errorMessage the explanation of the failure
      */
     void prepareFailView(String errorMessage);
+
+    /**
+     * Switch to Weather View.
+     */
+    void switchToCurrView();
+
+    /**
+     * Switch to hourly forecast view.
+     */
+    void switchToHourlyView();
+
+    /**
+     * Switch to daily forecast view.
+     */
+    void switchToDailyView();
 }

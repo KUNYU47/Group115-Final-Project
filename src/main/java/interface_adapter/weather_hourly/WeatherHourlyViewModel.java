@@ -1,4 +1,4 @@
-package interface_adapter.weather;
+package interface_adapter.weather_hourly;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -8,9 +8,9 @@ import interface_adapter.ViewModel;
 /**
  * The View Model for the Weather View.
  */
-public class WeatherViewModel extends ViewModel<WeatherState> {
+public class WeatherHourlyViewModel extends ViewModel<WeatherHourlyState> {
 
-    public static final String TITLE_LABEL = "Weather Screen";
+    public static final String TITLE_LABEL = "Weather Hourly Screen";
     public static final String CITY_LABEL = "City Name";
     public static final String GET_WEATHER_BUTTON_LABEL = "Get Weather";
     public static final String TEMPERATURE_LABEL = "Temperature: ";
@@ -21,22 +21,22 @@ public class WeatherViewModel extends ViewModel<WeatherState> {
     public static final String HOURLY = "Hourly";
     public static final String DAILY = "Daily";
 
-    private WeatherState state = new WeatherState();
+    private WeatherHourlyState state = new WeatherHourlyState();
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    public WeatherViewModel() {
-        super("weather");
+    public WeatherHourlyViewModel() {
+        super("weather hourly");
     }
 
     @Override
-    public void setState(WeatherState state) {
-        final WeatherState oldState = this.state;
+    public void setState(WeatherHourlyState state) {
+        final WeatherHourlyState oldState = this.state;
         this.state = state;
         support.firePropertyChange("state", oldState, this.state);
     }
 
-    public WeatherState getState() {
+    public WeatherHourlyState getState() {
         return this.state;
     }
 

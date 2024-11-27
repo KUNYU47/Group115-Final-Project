@@ -1,4 +1,4 @@
-package interface_adapter.weather;
+package interface_adapter.weather_daily;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -6,38 +6,41 @@ import java.beans.PropertyChangeSupport;
 import interface_adapter.ViewModel;
 
 /**
- * The View Model for the Weather View.
+ * The View Model for the Weather Daily View.
  */
-public class WeatherViewModel extends ViewModel<WeatherState> {
+public class WeatherDailyViewModel extends ViewModel<WeatherDailyState> {
 
-    public static final String TITLE_LABEL = "Weather Screen";
+    public static final String TITLE_LABEL = "Weather Daily Screen";
     public static final String CITY_LABEL = "City Name";
+    public static final String DAY_LABEL =
+            "Enter the number of days ahead for the forecast (an integer between 0 and 7)";
     public static final String GET_WEATHER_BUTTON_LABEL = "Get Weather";
     public static final String TEMPERATURE_LABEL = "Temperature: ";
     public static final String CONDITION_LABEL = "Condition: ";
     public static final String CITY_INFO_LABEL = "City: ";
+    public static final String SUMMARY_LABEL = "Summary: ";
     public static final String SETTINGS_LABEL = "Settings";
     public static final String CURRENT = "Current";
     public static final String HOURLY = "Hourly";
     public static final String DAILY = "Daily";
 
-    private WeatherState state = new WeatherState();
+    private WeatherDailyState state = new WeatherDailyState();
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    public WeatherViewModel() {
-        super("weather");
+    public WeatherDailyViewModel() {
+        super("weather daily");
     }
 
     @Override
-    public void setState(WeatherState state) {
-        final WeatherState oldState = this.state;
+    public void setState(WeatherDailyState state) {
+        final WeatherDailyState oldState = this.state;
         this.state = state;
-        support.firePropertyChange("state", oldState, this.state);
+        support.firePropertyChange("state", oldState, state);
     }
 
-    public WeatherState getState() {
-        return this.state;
+    public WeatherDailyState getState() {
+        return state;
     }
 
     @Override
@@ -49,5 +52,4 @@ public class WeatherViewModel extends ViewModel<WeatherState> {
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
-
 }

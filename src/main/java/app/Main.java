@@ -18,11 +18,15 @@ public class Main {
                                             .addSignupView()
                                             .addLoggedInView()
                                             .addWeatherView()
+                                            .addWeatherHourlyView()
+                                            .addWeatherDailyView()
                                             .addSignupUseCase()
                                             .addLoginUseCase()
                                             .addChangePasswordUseCase()
                                             .addLogoutUseCase()
                                             .addWeatherUseCase()
+                                            .addWeatherHourlyUseCase()
+                                            .addWeatherDailyUseCase()
                                             .build();
 
         application.pack();

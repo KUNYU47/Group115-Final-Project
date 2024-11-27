@@ -23,4 +23,25 @@ public class ChangePasswordController {
 
         userChangePasswordUseCaseInteractor.execute(changePasswordInputData);
     }
+
+    /**
+     * Executes the "switch to Logged In View" Use Case.
+     */
+    public void switchToCurrInView() {
+        userChangePasswordUseCaseInteractor.switchToCurrView();
+    }
+
+    /**
+     * Executes the switch to hourly forecast view use case.
+     */
+    public void switchToHourlyView() {
+        userChangePasswordUseCaseInteractor.switchToHourlyView();
+    }
+
+    /**
+     * Executes the switch to daily forecast view use case.
+     */
+    public void switchToDailyView() {
+        userChangePasswordUseCaseInteractor.switchToDailyView();
+    }
 }

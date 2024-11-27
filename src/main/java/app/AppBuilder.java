@@ -25,6 +25,12 @@ import interface_adapter.signup.SignupViewModel;
 import interface_adapter.weather.WeatherController;
 import interface_adapter.weather.WeatherPresenter;
 import interface_adapter.weather.WeatherViewModel;
+import interface_adapter.weather_daily.WeatherDailyController;
+import interface_adapter.weather_daily.WeatherDailyPresenter;
+import interface_adapter.weather_daily.WeatherDailyViewModel;
+import interface_adapter.weather_hourly.WeatherHourlyController;
+import interface_adapter.weather_hourly.WeatherHourlyPresenter;
+import interface_adapter.weather_hourly.WeatherHourlyViewModel;
 import use_case.change_password.ChangePasswordInputBoundary;
 import use_case.change_password.ChangePasswordInteractor;
 import use_case.change_password.ChangePasswordOutputBoundary;
@@ -41,6 +47,14 @@ import use_case.weather.WeatherDataAccessInterface;
 import use_case.weather.WeatherInputBoundary;
 import use_case.weather.WeatherInteractor;
 import use_case.weather.WeatherOutputBoundary;
+import use_case.weather_daily.WeatherDailyDataAccessInterface;
+import use_case.weather_daily.WeatherDailyInputBoundary;
+import use_case.weather_daily.WeatherDailyInteractor;
+import use_case.weather_daily.WeatherDailyOutputBoundary;
+import use_case.weather_hourly.WeatherHourlyDataAccessInterface;
+import use_case.weather_hourly.WeatherHourlyInputBoundary;
+import use_case.weather_hourly.WeatherHourlyInteractor;
+import use_case.weather_hourly.WeatherHourlyOutputBoundary;
 import view.*;
 
 /**
@@ -73,6 +87,10 @@ public class AppBuilder {
     private LoggedInViewModel loggedInViewModel;
     private WeatherView weatherView;
     private WeatherViewModel weatherViewModel;
+    private WeatherHourlyView weatherHourlyView;
+    private WeatherHourlyViewModel weatherHourlyViewModel;
+    private WeatherDailyView weatherDailyView;
+    private WeatherDailyViewModel weatherDailyViewModel;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
@@ -122,6 +140,20 @@ public class AppBuilder {
         return this;
     }
 
+    public AppBuilder addWeatherHourlyView() {
+        weatherHourlyViewModel = new WeatherHourlyViewModel();
+        weatherHourlyView = new WeatherHourlyView(weatherHourlyViewModel);
+        cardPanel.add(weatherHourlyView, weatherHourlyView.getViewName());
+        return this;
+    }
+
+    public AppBuilder addWeatherDailyView() {
+        weatherDailyViewModel = new WeatherDailyViewModel();
+        weatherDailyView = new WeatherDailyView(weatherDailyViewModel);
+        cardPanel.add(weatherDailyView, weatherDailyView.getViewName());
+        return this;
+    }
+
     /**
      * Adds the Signup Use Case to the application.
      * @return this builder
@@ -158,7 +190,11 @@ public class AppBuilder {
      */
     public AppBuilder addChangePasswordUseCase() {
         final ChangePasswordOutputBoundary changePasswordOutputBoundary =
-                new ChangePasswordPresenter(loggedInViewModel);
+                new ChangePasswordPresenter(weatherViewModel,
+                                            weatherHourlyViewModel,
+                                            weatherDailyViewModel,
+                                            loggedInViewModel,
+                                            viewManagerModel);
 
         final ChangePasswordInputBoundary changePasswordInteractor =
                 new ChangePasswordInteractor(userDataAccessObject, changePasswordOutputBoundary, userFactory);
@@ -190,8 +226,12 @@ public class AppBuilder {
      * @return this builder
      */
     public AppBuilder addWeatherUseCase() {
-        final WeatherOutputBoundary weatherOutputBoundary = new WeatherPresenter(viewManagerModel,
-                weatherViewModel, loggedInViewModel);
+        final WeatherOutputBoundary weatherOutputBoundary =
+                new WeatherPresenter(viewManagerModel,
+                                     weatherViewModel,
+                                     weatherHourlyViewModel,
+                                     weatherDailyViewModel,
+                                     loggedInViewModel);
 
         final WeatherDataAccessInterface weatherDataAccessObject = new WeatherDataAccessObject();
 
@@ -200,6 +240,42 @@ public class AppBuilder {
 
         final WeatherController weatherController = new WeatherController(weatherInteractor);
         weatherView.setWeatherController(weatherController);
+        return this;
+    }
+
+    public AppBuilder addWeatherHourlyUseCase() {
+        final WeatherHourlyOutputBoundary weatherHourlyOutputBoundary =
+                new WeatherHourlyPresenter(viewManagerModel,
+                                           weatherViewModel,
+                                           weatherHourlyViewModel,
+                                           weatherDailyViewModel,
+                                           loggedInViewModel);
+
+        final WeatherHourlyDataAccessInterface weatherHourlyDataAccessObject = new WeatherDataAccessObject();
+
+        final WeatherHourlyInputBoundary weatherHourlyInteractor =
+                new WeatherHourlyInteractor(weatherHourlyDataAccessObject, weatherHourlyOutputBoundary);
+
+        final WeatherHourlyController weatherHourlyController = new WeatherHourlyController(weatherHourlyInteractor);
+        weatherHourlyView.setWeatherController(weatherHourlyController);
+        return this;
+    }
+
+    public AppBuilder addWeatherDailyUseCase() {
+        final WeatherDailyOutputBoundary weatherDailyOutputBoundary =
+                new WeatherDailyPresenter(viewManagerModel,
+                                          weatherViewModel,
+                                          weatherHourlyViewModel,
+                                          weatherDailyViewModel,
+                                          loggedInViewModel);
+
+        final WeatherDailyDataAccessInterface weatherDailyDataAccessObject = new WeatherDataAccessObject();
+
+        final WeatherDailyInputBoundary weatherDailyInteractor =
+                new WeatherDailyInteractor(weatherDailyDataAccessObject, weatherDailyOutputBoundary);
+
+        final WeatherDailyController weatherDailyController = new WeatherDailyController(weatherDailyInteractor);
+        weatherDailyView.setWeatherDailyController(weatherDailyController);
         return this;
     }
 

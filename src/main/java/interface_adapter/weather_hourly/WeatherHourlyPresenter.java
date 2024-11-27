@@ -1,17 +1,17 @@
-package interface_adapter.weather;
+package interface_adapter.weather_hourly;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.change_password.LoggedInState;
 import interface_adapter.change_password.LoggedInViewModel;
+import interface_adapter.weather.WeatherViewModel;
 import interface_adapter.weather_daily.WeatherDailyViewModel;
-import interface_adapter.weather_hourly.WeatherHourlyViewModel;
-import use_case.weather.WeatherOutputBoundary;
-import use_case.weather.WeatherOutputData;
+import use_case.weather_hourly.WeatherHourlyOutputBoundary;
+import use_case.weather_hourly.WeatherHourlyOutputData;
 
 /**
  * The Presenter for the Weather Use Case.
  */
-public class WeatherPresenter implements WeatherOutputBoundary {
+public class WeatherHourlyPresenter implements WeatherHourlyOutputBoundary {
 
     private final WeatherViewModel weatherViewModel;
     private final WeatherHourlyViewModel weatherHourlyViewModel;
@@ -19,11 +19,11 @@ public class WeatherPresenter implements WeatherOutputBoundary {
     private final LoggedInViewModel loggedInViewModel;
     private final ViewManagerModel viewManagerModel;
 
-    public WeatherPresenter(ViewManagerModel viewManagerModel,
-                            WeatherViewModel weatherViewModel,
-                            WeatherHourlyViewModel weatherHourlyViewModel,
-                            WeatherDailyViewModel weatherDailyViewModel,
-                            LoggedInViewModel loggedInViewModel) {
+    public WeatherHourlyPresenter(ViewManagerModel viewManagerModel,
+                                  WeatherViewModel weatherViewModel,
+                                  WeatherHourlyViewModel weatherHourlyViewModel,
+                                  WeatherDailyViewModel weatherDailyViewModel,
+                                  LoggedInViewModel loggedInViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.weatherViewModel = weatherViewModel;
         this.weatherHourlyViewModel = weatherHourlyViewModel;
@@ -32,18 +32,18 @@ public class WeatherPresenter implements WeatherOutputBoundary {
     }
 
     @Override
-    public void prepareSuccessView(WeatherOutputData outputData) {
+    public void prepareSuccessView(WeatherHourlyOutputData outputData) {
         // On success, update the WeatherViewModel with the received weather data.
-        final WeatherState weatherState = weatherViewModel.getState();
-        weatherState.setCity(outputData.getCity());
-        weatherState.setTemperature(outputData.getTemperature());
-        weatherState.setCondition(outputData.getCondition());
-        weatherState.setErrorMessage(null);
-        weatherViewModel.setState(weatherState);
+        final WeatherHourlyState weatherHourlyState = weatherHourlyViewModel.getState();
+        weatherHourlyState.setCity(outputData.getCity());
+        weatherHourlyState.setTemperature(outputData.getTemperature());
+        weatherHourlyState.setCondition(outputData.getCondition());
+        weatherHourlyState.setErrorMessage(null);
+        weatherHourlyViewModel.setState(weatherHourlyState);
 
-        weatherViewModel.firePropertyChanged();
+        weatherHourlyViewModel.firePropertyChanged();
 
-        viewManagerModel.setState(weatherViewModel.getViewName());
+        viewManagerModel.setState(weatherHourlyViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
 
     }
@@ -51,21 +51,21 @@ public class WeatherPresenter implements WeatherOutputBoundary {
     @Override
     public void prepareFailView(String error) {
         // On failure, update the WeatherViewModel with an error message.
-        final WeatherState weatherState = weatherViewModel.getState();
+        final WeatherHourlyState weatherState = weatherHourlyViewModel.getState();
         weatherState.setErrorMessage(error);
-        weatherViewModel.firePropertyChanged();
+        weatherHourlyViewModel.firePropertyChanged();
     }
 
     @Override
     public void switchToLoggedInView() {
-        updateLastView(weatherViewModel.getViewName());
+        updateLastView(weatherHourlyViewModel.getViewName());
         viewManagerModel.setState(loggedInViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
     @Override
-    public void switchToHourlyView() {
-        viewManagerModel.setState(weatherHourlyViewModel.getViewName());
+    public void switchToCurrView() {
+        viewManagerModel.setState(weatherViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
