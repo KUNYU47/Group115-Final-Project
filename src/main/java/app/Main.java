@@ -12,7 +12,6 @@ public class Main {
      */
     public static void main(String[] args) {
         final AppBuilder appBuilder = new AppBuilder();
-        // TODO: add the Logout Use Case to the app using the appBuilder
         final JFrame application = appBuilder
                                             .addLoginView()
                                             .addSignupView()
@@ -20,6 +19,7 @@ public class Main {
                                             .addWeatherView()
                                             .addWeatherHourlyView()
                                             .addWeatherDailyView()
+
                                             .addSignupUseCase()
                                             .addLoginUseCase()
                                             .addChangePasswordUseCase()
@@ -27,9 +27,18 @@ public class Main {
                                             .addWeatherUseCase()
                                             .addWeatherHourlyUseCase()
                                             .addWeatherDailyUseCase()
+
                                             .build();
 
-        application.pack();
+        // set the window size to be 435*410 and prevent it from changing.
+        // Yes, these numbers are determined by trail and error.
+        final int height = 435;
+        final int width = 410;
+        application.setSize(width, height);
+        application.setResizable(false);
+        application.setLocationRelativeTo(null);
+
+//        application.pack();
         application.setVisible(true);
     }
 }

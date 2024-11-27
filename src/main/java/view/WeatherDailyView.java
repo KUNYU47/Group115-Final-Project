@@ -22,7 +22,7 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
     // UI components.
     private final JTextField cityNameInputField = new JTextField(15);
     private final JLabel cityLabel = new JLabel(WeatherDailyViewModel.CITY_INFO_LABEL);
-    private final JTextField dayInputField = new JTextField(5);
+    private final JTextField dayInputField = new JTextField(15);
     private final JLabel dayLabel = new JLabel(WeatherDailyViewModel.DAY_LABEL);
     private final JLabel temperatureLabel = new JLabel(WeatherDailyViewModel.TEMPERATURE_LABEL);
     private final JLabel conditionLabel = new JLabel(WeatherDailyViewModel.CONDITION_LABEL);

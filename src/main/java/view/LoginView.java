@@ -1,23 +1,21 @@
 package view;
 
-import java.awt.Component;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * The View for when the user is logging into the program.
@@ -35,6 +33,12 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
     private final JButton logIn;
     private final JButton cancel;
+
+    private final JLabel backGround = new JLabel();
+
+    private final JPanel mainPanel = new JPanel();
+    private final JLayeredPane layeredPane = new JLayeredPane();
+
     private LoginController loginController;
 
     public LoginView(LoginViewModel loginViewModel) {
@@ -42,19 +46,33 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         this.loginViewModel = loginViewModel;
         this.loginViewModel.addPropertyChangeListener(this);
 
+        // set the initial background picture to "clear".
+        final ImageIcon initialImage = new ImageIcon("resources/images/weather_conditions/clear.jpg");
+        final ImageIcon scaledIcon = getScaledIcon(initialImage);
+        backGround.setIcon(scaledIcon);
+        backGround.setBounds(0, 0, scaledIcon.getIconWidth(), scaledIcon.getIconHeight());
+
+        layeredPane.setSize(scaledIcon.getIconWidth(), scaledIcon.getIconHeight());
+        layeredPane.add(backGround, JLayeredPane.DEFAULT_LAYER);
+
+        // build the elements for the main panel.
         final JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         final LabelTextPanel usernameInfo = new LabelTextPanel(
                 new JLabel("Username"), usernameInputField);
+        usernameInfo.setOpaque(false);
+
         final LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel("Password"), passwordInputField);
+        passwordInfo.setOpaque(false);
 
         final JPanel buttons = new JPanel();
         logIn = new JButton("log in");
         buttons.add(logIn);
         cancel = new JButton("cancel");
         buttons.add(cancel);
+        buttons.setOpaque(false);
 
         logIn.addActionListener(
                 new ActionListener() {
@@ -97,8 +115,6 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
             }
         });
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
         passwordInputField.getDocument().addDocumentListener(new DocumentListener() {
 
             private void documentListenerHelper() {
@@ -123,11 +139,61 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
             }
         });
 
-        this.add(title);
-        this.add(usernameInfo);
-        this.add(usernameErrorField);
-        this.add(passwordInfo);
-        this.add(buttons);
+        // create a "main" panel to hold the elements of this view.
+        mainPanel.setOpaque(false);
+        mainPanel.setBounds(0, 0, scaledIcon.getIconWidth(), scaledIcon.getIconHeight());
+        setMainLayout(mainPanel, title, usernameInfo, passwordInfo, buttons);
+
+        // add mainPanel to a higher lager.
+        layeredPane.add(mainPanel, JLayeredPane.PALETTE_LAYER);
+
+        // final configuration of the layered pane.
+        this.setLayout(null);
+        this.add(layeredPane, BorderLayout.CENTER);
+    }
+
+    private void setMainLayout(JPanel panel,
+                               JLabel title,
+                               LabelTextPanel user,
+                               LabelTextPanel password,
+                               JPanel buttons) {
+        final GroupLayout layout = new GroupLayout(panel);
+        panel.setLayout(layout);
+
+        layout.setAutoCreateGaps(false);
+        layout.setAutoCreateContainerGaps(true);
+
+        layout.setHorizontalGroup(
+                layout.createSequentialGroup()
+                        .addGap(100)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                                .addComponent(title)
+                                .addComponent(user)
+                                .addComponent(password)
+                                .addComponent(usernameErrorField)
+                                .addComponent(buttons))
+                        .addGap(100)
+        );
+
+        layout.setVerticalGroup(
+                layout.createSequentialGroup()
+                .addGap(75)
+                        .addComponent(title)
+                        .addComponent(user)
+                        .addComponent(password)
+                        .addComponent(usernameErrorField)
+                        .addGap(20)
+                .addComponent(buttons)
+                        .addGap(75));
+
+    }
+
+    private static ImageIcon getScaledIcon(ImageIcon initialImage) {
+        final Image originalImage = initialImage.getImage();
+        final Image scaledImage = originalImage.getScaledInstance(LoginViewModel.WINDOWITH,
+                                                                  LoginViewModel.WINDOWITH,
+                                                                  Image.SCALE_SMOOTH);
+        return new ImageIcon(scaledImage);
     }
 
     /**
