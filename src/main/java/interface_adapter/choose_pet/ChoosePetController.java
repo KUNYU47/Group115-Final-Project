@@ -9,20 +9,13 @@ public class ChoosePetController {
     }
 
     /**
-     * Executes the Weather Use Case.
-     * @param city the city we are referring.
+     * Executes the pet Use Case.
+     * @param pet the pet we are referring.
      */
-    public void execute(String city) {
-        final ChoosePetInputData PetInputData = new ChoosePetInputData(city);
+    public void execute(String pet) {
+        final ChoosePetInputData PetInputData = new ChoosePetInputData(pet);
 
         PetUseCaseInteractor.execute(PetInputData);
-    }
-
-    /**
-     * Executes the "switch to Logged In View" Use Case.
-     */
-    public void switchToLoggedInView() {
-        PetUseCaseInteractor.switchToLoggedInView();
     }
 
     /**
