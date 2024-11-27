@@ -17,8 +17,13 @@ public class ChoosePetPresenter {
         // Get the current state of the pet view model
         ChoosePetState petState = petViewModel.getState();
 
-        // Update the state with success information (clear any error messages)
+        // Update the state with the selected pet
+        petState.setSelectedPet(outputData.getSelectedPet());
+
+        // Clear any error messages
         petState.setErrorMessage(null);
+
+        // Update the view model's state
         petViewModel.setState(petState);
 
         // Notify that the view model has changed
