@@ -17,4 +17,10 @@ public interface ChoosePetOutputBoundary {
      * @param errorMessage The error message to be displayed.
      */
     void prepareFailView(String errorMessage);
+
+    /**
+     * Switches to the current weather view.
+     */
+    void switchToCurrView();
 }
+

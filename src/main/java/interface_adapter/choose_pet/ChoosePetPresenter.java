@@ -1,9 +1,10 @@
 import interface_adapter.ViewManagerModel;
 import interface_adapter.choose_pet.ChoosePetState;
 import interface_adapter.choose_pet.ChoosePetViewModel;
+import use_case.choose_pet.ChoosePetOutputBoundary;
 import use_case.choose_pet.ChoosePetOutputData;
 
-public class ChoosePetPresenter {
+public class ChoosePetPresenter implements ChoosePetOutputBoundary {
     private final ChoosePetViewModel petViewModel;
     private final ViewManagerModel viewManagerModel;
 
