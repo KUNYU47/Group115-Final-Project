@@ -36,6 +36,7 @@ public class WeatherViewModel extends ViewModel<WeatherState> {
         support.firePropertyChange("state", oldState, this.state);
     }
 
+    @Override
     public WeatherState getState() {
         return this.state;
     }

@@ -14,6 +14,9 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.change_password.ChangePasswordController;
 import interface_adapter.change_password.ChangePasswordPresenter;
 import interface_adapter.change_password.LoggedInViewModel;
+import interface_adapter.choose_pet.ChoosePetController;
+import interface_adapter.choose_pet.ChoosePetPresenter;
+import interface_adapter.choose_pet.ChoosePetViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
@@ -34,6 +37,9 @@ import interface_adapter.weather_hourly.WeatherHourlyViewModel;
 import use_case.change_password.ChangePasswordInputBoundary;
 import use_case.change_password.ChangePasswordInteractor;
 import use_case.change_password.ChangePasswordOutputBoundary;
+import use_case.choose_pet.ChoosePetInputBoundary;
+import use_case.choose_pet.ChoosePetInteractor;
+import use_case.choose_pet.ChoosePetOutputBoundary;
 import use_case.login.LoginInputBoundary;
 import use_case.login.LoginInteractor;
 import use_case.login.LoginOutputBoundary;
@@ -91,6 +97,8 @@ public class AppBuilder {
     private WeatherHourlyViewModel weatherHourlyViewModel;
     private WeatherDailyView weatherDailyView;
     private WeatherDailyViewModel weatherDailyViewModel;
+    private ChoosePetView choosePetView;
+    private ChoosePetViewModel choosePetViewModel;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
@@ -154,6 +162,13 @@ public class AppBuilder {
         return this;
     }
 
+    public AppBuilder addChoosePetView() {
+        choosePetViewModel = new ChoosePetViewModel();
+        choosePetView = new ChoosePetView(choosePetViewModel);
+        cardPanel.add(choosePetView, choosePetView.getViewName());
+        return this;
+    }
+
     /**
      * Adds the Signup Use Case to the application.
      * @return this builder
@@ -175,7 +190,7 @@ public class AppBuilder {
      */
     public AppBuilder addLoginUseCase() {
         final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel,
-                loggedInViewModel, weatherViewModel, loginViewModel);
+                loggedInViewModel, weatherViewModel, choosePetViewModel, loginViewModel);
         final LoginInputBoundary loginInteractor = new LoginInteractor(
                 userDataAccessObject, loginOutputBoundary);
 
@@ -276,6 +291,17 @@ public class AppBuilder {
 
         final WeatherDailyController weatherDailyController = new WeatherDailyController(weatherDailyInteractor);
         weatherDailyView.setWeatherDailyController(weatherDailyController);
+        return this;
+    }
+
+    public AppBuilder addChoosePetUseCase() {
+        final ChoosePetOutputBoundary choosePetOutputBoundary =
+                new ChoosePetPresenter(viewManagerModel, choosePetViewModel, weatherViewModel);
+
+        final ChoosePetInputBoundary choosePetInteractor = new ChoosePetInteractor(choosePetOutputBoundary);
+
+        final ChoosePetController choosePetController = new ChoosePetController(choosePetInteractor);
+        choosePetView.setChoosePetController(choosePetController);
         return this;
     }
 

@@ -19,6 +19,7 @@ public class Main {
                                             .addWeatherView()
                                             .addWeatherHourlyView()
                                             .addWeatherDailyView()
+                                            .addChoosePetView()
 
                                             .addSignupUseCase()
                                             .addLoginUseCase()
@@ -27,6 +28,7 @@ public class Main {
                                             .addWeatherUseCase()
                                             .addWeatherHourlyUseCase()
                                             .addWeatherDailyUseCase()
+                                            .addChoosePetUseCase()
 
                                             .build();
 

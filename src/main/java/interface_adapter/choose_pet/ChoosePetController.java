@@ -1,11 +1,13 @@
+package interface_adapter.choose_pet;
+
 import use_case.choose_pet.ChoosePetInputBoundary;
 import use_case.choose_pet.ChoosePetInputData;
 
 public class ChoosePetController {
-    private final ChoosePetInputBoundary PetUseCaseInteractor;
+    private final ChoosePetInputBoundary petUseCaseInteractor;
 
     public ChoosePetController(ChoosePetInputBoundary userPetUseCaseInteractor) {
-        this.PetUseCaseInteractor = userPetUseCaseInteractor;
+        this.petUseCaseInteractor = userPetUseCaseInteractor;
     }
 
     /**
@@ -13,15 +15,15 @@ public class ChoosePetController {
      * @param pet the pet we are referring.
      */
     public void execute(String pet) {
-        final ChoosePetInputData PetInputData = new ChoosePetInputData(pet);
+        final ChoosePetInputData petInputData = new ChoosePetInputData(pet);
 
-        PetUseCaseInteractor.execute(PetInputData);
+        petUseCaseInteractor.execute(petInputData);
     }
 
     /**
      * Executes the switch to hourly forecast view use case.
      */
     public void switchToCurrView() {
-        PetUseCaseInteractor.switchToCurrView();
+        petUseCaseInteractor.switchToCurrView();
     }
 }

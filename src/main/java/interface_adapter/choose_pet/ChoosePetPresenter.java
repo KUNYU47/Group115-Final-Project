@@ -1,22 +1,27 @@
+package interface_adapter.choose_pet;
+
 import interface_adapter.ViewManagerModel;
-import interface_adapter.choose_pet.ChoosePetState;
-import interface_adapter.choose_pet.ChoosePetViewModel;
+import interface_adapter.weather.WeatherViewModel;
 import use_case.choose_pet.ChoosePetOutputBoundary;
 import use_case.choose_pet.ChoosePetOutputData;
 
 public class ChoosePetPresenter implements ChoosePetOutputBoundary {
     private final ChoosePetViewModel petViewModel;
+    private final WeatherViewModel weatherViewModel;
     private final ViewManagerModel viewManagerModel;
 
-    public ChoosePetPresenter(ViewManagerModel viewManagerModel, ChoosePetViewModel petViewModel) {
+    public ChoosePetPresenter(ViewManagerModel viewManagerModel,
+                              ChoosePetViewModel petViewModel,
+                              WeatherViewModel weatherViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.petViewModel = petViewModel;
+        this.weatherViewModel = weatherViewModel;
     }
 
     @Override
     public void prepareSuccessView(ChoosePetOutputData outputData) {
         // Get the current state of the pet view model
-        ChoosePetState petState = petViewModel.getState();
+        final ChoosePetState petState = petViewModel.getState();
 
         // Update the state with the selected pet
         petState.setSelectedPet(outputData.getSelectedPet());
@@ -38,7 +43,7 @@ public class ChoosePetPresenter implements ChoosePetOutputBoundary {
     @Override
     public void prepareFailView(String errorMessage) {
         // Get the current state of the pet view model
-        ChoosePetState petState = petViewModel.getState();
+        final ChoosePetState petState = petViewModel.getState();
 
         // Set the error message
         petState.setErrorMessage(errorMessage);
@@ -51,7 +56,7 @@ public class ChoosePetPresenter implements ChoosePetOutputBoundary {
     @Override
     public void switchToCurrView() {
         // Update the view manager to switch to the current view of the pet view model
-        viewManagerModel.setState(petViewModel.getViewName());
+        viewManagerModel.setState(weatherViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 }

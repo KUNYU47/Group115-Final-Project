@@ -20,16 +20,17 @@ public class ChoosePetViewModel extends ViewModel<ChoosePetState> {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public ChoosePetViewModel() {
-        super("choose pet");
+        super("Choose Your Pet");
     }
 
     @Override
     public void setState(ChoosePetState state) {
         final ChoosePetState oldState = this.state;
         this.state = state;
-        support.firePropertyChange("state", oldState, state);
+        support.firePropertyChange("state", oldState, this.state);
     }
 
+    @Override
     public ChoosePetState getState() {
         return state;
     }
