@@ -38,6 +38,7 @@ public class WeatherPresenter implements WeatherOutputBoundary {
         weatherState.setCity(outputData.getCity());
         weatherState.setTemperature(outputData.getTemperature());
         weatherState.setCondition(outputData.getCondition());
+        weatherState.setDescription(outputData.getDescription());
         weatherState.setErrorMessage(null);
         weatherViewModel.setState(weatherState);
 

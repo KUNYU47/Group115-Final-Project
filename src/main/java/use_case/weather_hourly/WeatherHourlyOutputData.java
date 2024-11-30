@@ -33,7 +33,15 @@ public class WeatherHourlyOutputData {
         return getWeather(this.hourWeatherData.getJSONArray("weather").getJSONObject(0));
     }
 
+    public String getDescription() {
+        return getDesHelper(this.hourWeatherData.getJSONArray("weather").getJSONObject(0));
+    }
+
     private String getWeather(JSONObject weather) {
         return weather.getString("main");
+    }
+
+    private String getDesHelper(JSONObject weather) {
+        return weather.getString("description");
     }
 }

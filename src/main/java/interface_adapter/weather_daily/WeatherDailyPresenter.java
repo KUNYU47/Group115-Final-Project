@@ -37,6 +37,7 @@ public class WeatherDailyPresenter implements WeatherDailyOutputBoundary {
         weatherDailyState.setCity(outputData.getCity());
         weatherDailyState.setTemperature(outputData.getTemperature());
         weatherDailyState.setCondition(outputData.getCondition());
+        weatherDailyState.setDescription(outputData.getDescription());
         weatherDailyState.setSummary(outputData.getSummary());
         weatherDailyState.setErrorMessage(null);
         weatherDailyViewModel.setState(weatherDailyState);

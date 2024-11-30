@@ -29,7 +29,7 @@ public class WeatherHourlyView extends JPanel implements ActionListener, Propert
 
     private final JLabel cityLabel = new JLabel(WeatherHourlyViewModel.CITY_INFO_LABEL);
     private final JLabel temperatureLabel = new JLabel(WeatherHourlyViewModel.TEMPERATURE_LABEL);
-    private final JLabel conditionLabel = new JLabel(WeatherHourlyViewModel.CONDITION_LABEL);
+    private final JLabel descriptionLabel = new JLabel(WeatherHourlyViewModel.DESCRIPTION_LABEL);
     private final JLabel errorMessageLabel = new JLabel();
 
     private final JLabel backGround = new JLabel();
@@ -82,7 +82,7 @@ public class WeatherHourlyView extends JPanel implements ActionListener, Propert
         weatherInfoPanel.setLayout(new BoxLayout(weatherInfoPanel, BoxLayout.Y_AXIS));
         weatherInfoPanel.add(cityLabel);
         weatherInfoPanel.add(temperatureLabel);
-        weatherInfoPanel.add(conditionLabel);
+        weatherInfoPanel.add(descriptionLabel);
         weatherInfoPanel.add(errorMessageLabel);
         weatherInfoPanel.setOpaque(false);
 
@@ -198,10 +198,10 @@ public class WeatherHourlyView extends JPanel implements ActionListener, Propert
 
     private void setFields(WeatherHourlyState state) {
         backGround.setIcon(getUpdatedIcon(state));
-        cityNameInputField.setText("");
+        cityNameInputField.setText(state.getCity());
         cityLabel.setText(WeatherHourlyViewModel.CITY_INFO_LABEL + state.getCity());
         temperatureLabel.setText(WeatherHourlyViewModel.TEMPERATURE_LABEL + state.getTemperature());
-        conditionLabel.setText(WeatherHourlyViewModel.CONDITION_LABEL + state.getCondition());
+        descriptionLabel.setText(WeatherHourlyViewModel.DESCRIPTION_LABEL + state.getDescription());
     }
 
     private Icon getUpdatedIcon(WeatherHourlyState state) {

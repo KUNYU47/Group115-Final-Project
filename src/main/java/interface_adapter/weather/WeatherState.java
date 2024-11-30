@@ -7,6 +7,7 @@ public class WeatherState {
     private String city;
     private double temperature;
     private String condition;
+    private String description;
 
     private String errorMessage;
 
@@ -20,6 +21,10 @@ public class WeatherState {
 
     public void setCondition(String condition) {
         this.condition = condition;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setErrorMessage(String errorMessage) {
@@ -36,6 +41,10 @@ public class WeatherState {
 
     public String getCondition() {
         return condition;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public String getErrorMessage() {

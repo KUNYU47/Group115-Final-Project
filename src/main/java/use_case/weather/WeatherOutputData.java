@@ -31,7 +31,15 @@ public class WeatherOutputData {
         return getWeather(this.currWeatherData.getJSONArray("weather").getJSONObject(0));
     }
 
+    public String getDescription() {
+        return getDesHelper(this.currWeatherData.getJSONArray("weather").getJSONObject(0));
+    }
+
     private String getWeather(JSONObject weather) {
         return weather.getString("main");
+    }
+
+    private String getDesHelper(JSONObject weather) {
+        return weather.getString("description");
     }
 }

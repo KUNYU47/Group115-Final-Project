@@ -38,6 +38,7 @@ public class WeatherHourlyPresenter implements WeatherHourlyOutputBoundary {
         weatherHourlyState.setCity(outputData.getCity());
         weatherHourlyState.setTemperature(outputData.getTemperature());
         weatherHourlyState.setCondition(outputData.getCondition());
+        weatherHourlyState.setDescription(outputData.getDescription());
         weatherHourlyState.setErrorMessage(null);
         weatherHourlyViewModel.setState(weatherHourlyState);
 

@@ -29,7 +29,7 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
 
     private final JLabel cityLabel = new JLabel(WeatherDailyViewModel.CITY_INFO_LABEL);
     private final JLabel temperatureLabel = new JLabel(WeatherDailyViewModel.TEMPERATURE_LABEL);
-    private final JLabel conditionLabel = new JLabel(WeatherDailyViewModel.CONDITION_LABEL);
+    private final JLabel descriptionLabel = new JLabel(WeatherDailyViewModel.DESCRIPTION_LABEL);
     private final JLabel errorMessageLabel = new JLabel();
 
     private JComboBox<String> modeComboBox = new JComboBox<>();
@@ -92,7 +92,7 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
         weatherInfoPanel.setLayout(new BoxLayout(weatherInfoPanel, BoxLayout.Y_AXIS));
         weatherInfoPanel.add(cityLabel);
         weatherInfoPanel.add(temperatureLabel);
-        weatherInfoPanel.add(conditionLabel);
+        weatherInfoPanel.add(descriptionLabel);
         weatherInfoPanel.add(errorMessageLabel);
         weatherInfoPanel.setOpaque(false);
 
@@ -212,7 +212,7 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
         cityNameInputField.setText(state.getCity());
         cityLabel.setText(WeatherDailyViewModel.CITY_INFO_LABEL + state.getCity());
         temperatureLabel.setText(WeatherDailyViewModel.TEMPERATURE_LABEL + state.getTemperature());
-        conditionLabel.setText(WeatherDailyViewModel.CONDITION_LABEL + state.getCondition());
+        descriptionLabel.setText(WeatherDailyViewModel.DESCRIPTION_LABEL + state.getDescription());
         summaryArea.setText(WeatherDailyViewModel.SUMMARY_LABEL + state.getSummary());
     }
 

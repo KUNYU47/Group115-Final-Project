@@ -28,7 +28,7 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
 
     private final JLabel cityLabel = new JLabel(WeatherViewModel.CITY_INFO_LABEL);
     private final JLabel temperatureLabel = new JLabel(WeatherViewModel.TEMPERATURE_LABEL);
-    private final JLabel conditionLabel = new JLabel(WeatherViewModel.CONDITION_LABEL);
+    private final JLabel descriptionLabel = new JLabel(WeatherViewModel.DESCRIPTION_LABEL);
     private final JLabel errorMessageLabel = new JLabel();
 
     private final JLabel backGround = new JLabel();
@@ -77,7 +77,7 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
         weatherInfoPanel.setLayout(new BoxLayout(weatherInfoPanel, BoxLayout.Y_AXIS));
         weatherInfoPanel.add(cityLabel);
         weatherInfoPanel.add(temperatureLabel);
-        weatherInfoPanel.add(conditionLabel);
+        weatherInfoPanel.add(descriptionLabel);
         weatherInfoPanel.add(errorMessageLabel);
         weatherInfoPanel.setOpaque(false);
 
@@ -181,7 +181,7 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
         cityNameInputField.setText("");
         cityLabel.setText(WeatherViewModel.CITY_INFO_LABEL + state.getCity());
         temperatureLabel.setText(WeatherViewModel.TEMPERATURE_LABEL + state.getTemperature());
-        conditionLabel.setText(WeatherViewModel.CONDITION_LABEL + state.getCondition());
+        descriptionLabel.setText(WeatherViewModel.DESCRIPTION_LABEL + state.getDescription());
     }
 
     private Icon getUpdatedIcon(WeatherState state) {

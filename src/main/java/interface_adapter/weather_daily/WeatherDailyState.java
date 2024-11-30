@@ -7,6 +7,7 @@ public class WeatherDailyState {
     private String city;
     private double temperature;
     private String condition;
+    private String description;
     private String summary;
 
     private String errorMessage;
@@ -27,6 +28,10 @@ public class WeatherDailyState {
         this.summary = summary;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
@@ -41,6 +46,10 @@ public class WeatherDailyState {
 
     public String getCondition() {
         return condition;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public String getSummary() {
