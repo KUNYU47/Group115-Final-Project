@@ -38,7 +38,9 @@ public class ChoosePetView extends JPanel implements ActionListener, PropertyCha
         add(label);
 
         // Dropdown for pets
-        petDropdown = new JComboBox<>();
+        final String[] petOptions = new String[] {"Dog", "Cat", "Fox", "Rabbit"};
+        petDropdown = new JComboBox<>(petOptions);
+        petDropdown.setSelectedItem(null);
         add(petDropdown);
 
         // Confirmation button

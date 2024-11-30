@@ -27,6 +27,7 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
     private final JLabel temperatureLabel = new JLabel(WeatherDailyViewModel.TEMPERATURE_LABEL);
     private final JLabel conditionLabel = new JLabel(WeatherDailyViewModel.CONDITION_LABEL);
     private final JLabel summaryLabel = new JLabel(WeatherDailyViewModel.SUMMARY_LABEL);
+    private final JTextArea summaryArea = new JTextArea(WeatherDailyViewModel.SUMMARY_LABEL);
     private final JLabel errorMessageLabel = new JLabel();
     private final JButton getWeatherButton;
     private final JButton goToSettingsButton;
@@ -65,12 +66,17 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
         cityInputPlusModePanel.add(cityInputPanel);
         cityInputPlusModePanel.add(modeComboBox);
 
+        summaryArea.setTabSize(10);
+        summaryArea.setWrapStyleWord(true);
+        summaryArea.setLineWrap(true);
+        summaryArea.setEditable(false);
+
         final JPanel weatherInfoPanel = new JPanel();
         weatherInfoPanel.setLayout(new BoxLayout(weatherInfoPanel, BoxLayout.Y_AXIS));
         weatherInfoPanel.add(cityLabel);
         weatherInfoPanel.add(temperatureLabel);
         weatherInfoPanel.add(conditionLabel);
-        weatherInfoPanel.add(summaryLabel);
+        weatherInfoPanel.add(summaryArea);
         weatherInfoPanel.add(errorMessageLabel);
 
         final JPanel buttons = new JPanel();
@@ -141,7 +147,8 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
         cityLabel.setText(WeatherDailyViewModel.CITY_INFO_LABEL + state.getCity());
         temperatureLabel.setText(WeatherDailyViewModel.TEMPERATURE_LABEL + state.getTemperature());
         conditionLabel.setText(WeatherDailyViewModel.CONDITION_LABEL + state.getCondition());
-        summaryLabel.setText(WeatherDailyViewModel.SUMMARY_LABEL + state.getSummary());
+        summaryArea.setText(WeatherDailyViewModel.SUMMARY_LABEL + state.getSummary());
+//        summaryLabel.setText(WeatherDailyViewModel.SUMMARY_LABEL + state.getSummary());
     }
 
     public String getViewName() {

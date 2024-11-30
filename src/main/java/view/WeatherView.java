@@ -129,15 +129,6 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
         this.add(layeredPane);
     }
 
-    /**
-     * React to a button click that results in evt.
-     * @param evt the ActionEvent to react to
-     */
-    // Note that this method is un used thus can be deleted.
-    public void actionPerformed(ActionEvent evt) {
-        JOptionPane.showMessageDialog(this, "Settings not implemented yet.");
-    }
-
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         final WeatherState state = (WeatherState) evt.getNewValue();
@@ -232,5 +223,10 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
 
     public void setWeatherController(WeatherController weatherController) {
         this.weatherController = weatherController;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // we will never use this actionPerformed function.
     }
 }
