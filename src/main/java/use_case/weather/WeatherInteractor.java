@@ -32,8 +32,7 @@ public class WeatherInteractor implements WeatherInputBoundary {
 
                 final WeatherOutputData outputData = new WeatherOutputData(
                         weatherData.getJSONObject("current"),
-                        city.getString("name"),
-                        false);
+                        city.getString("name"));
 
                 weatherPresenter.prepareSuccessView(outputData);
 

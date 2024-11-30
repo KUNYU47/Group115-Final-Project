@@ -9,15 +9,12 @@ import org.json.JSONObject;
 public class WeatherHourlyOutputData {
     private final JSONObject hourWeatherData;
     private final String city;
-    private final boolean useCaseFailed;
 
     public WeatherHourlyOutputData(JSONArray weatherData,
                                    int numHour,
-                                   String city,
-                                   boolean useCaseFailed) {
+                                   String city) {
         this.hourWeatherData = weatherData.getJSONObject(numHour);
         this.city = city;
-        this.useCaseFailed = useCaseFailed;
     }
 
     public JSONObject getHourWeatherData() {
@@ -38,9 +35,5 @@ public class WeatherHourlyOutputData {
 
     private String getWeather(JSONObject weather) {
         return weather.getString("main");
-    }
-
-    public boolean isUseCaseFailed() {
-        return useCaseFailed;
     }
 }

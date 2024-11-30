@@ -33,6 +33,11 @@ class LoginInteractorTest {
             public void prepareFailView(String error) {
                 fail("Use case failure is unexpected.");
             }
+
+            @Override
+            public void switchToSignUpView() {
+                // this won't be met
+            }
         };
 
         LoginInputBoundary interactor = new LoginInteractor(userRepository, successPresenter);
@@ -59,6 +64,11 @@ class LoginInteractorTest {
             @Override
             public void prepareFailView(String error) {
                 fail("Use case failure is unexpected.");
+            }
+
+            @Override
+            public void switchToSignUpView() {
+                // this won't be reached
             }
         };
 
@@ -91,6 +101,11 @@ class LoginInteractorTest {
             public void prepareFailView(String error) {
                 assertEquals("Incorrect password for \"Paul\".", error);
             }
+
+            @Override
+            public void switchToSignUpView() {
+                // this won't be reached
+            }
         };
 
         LoginInputBoundary interactor = new LoginInteractor(userRepository, failurePresenter);
@@ -116,9 +131,54 @@ class LoginInteractorTest {
             public void prepareFailView(String error) {
                 assertEquals("Paul: Account does not exist.", error);
             }
+
+            @Override
+            public void switchToSignUpView() {
+                fail("Switch to sign up view is unexpected.");
+            }
         };
 
         LoginInputBoundary interactor = new LoginInteractor(userRepository, failurePresenter);
         interactor.execute(inputData);
     }
+
+    @Test
+    void switchToSignUpViewTest() {
+        LoginUserDataAccessInterface userRepository = new InMemoryUserDataAccessObject();
+
+        // Wrapper presenter class to track method call
+        class TestLoginPresenter implements LoginOutputBoundary {
+            private boolean switchCalled = false;
+
+            @Override
+            public void prepareSuccessView(LoginOutputData user) {
+                fail("Use case success is unexpected.");
+            }
+
+            @Override
+            public void prepareFailView(String error) {
+                fail("Use case failure is unexpected.");
+            }
+
+            @Override
+            public void switchToSignUpView() {
+                switchCalled = true; // Mark that the method is called
+            }
+
+            public boolean isSwitchCalled() {
+                return switchCalled;
+            }
+        }
+
+        TestLoginPresenter switchPresenter = new TestLoginPresenter();
+        LoginInteractor interactor = new LoginInteractor(userRepository, switchPresenter);
+
+        // Call the method
+        interactor.switchToSignUpView();
+
+        // Assert that switchToSignUpView was called
+        assertTrue(switchPresenter.isSwitchCalled());
+    }
+
+
 }

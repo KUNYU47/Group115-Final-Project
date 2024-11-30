@@ -43,8 +43,4 @@ public class WeatherDailyOutputData {
     public String getSummary() {
         return dayWeatherData.getString("summary") + ".";
     }
-
-    public boolean isUseCaseFailed() {
-        return useCaseFailed;
-    }
 }

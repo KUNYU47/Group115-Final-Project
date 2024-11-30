@@ -101,4 +101,48 @@ class SignupInteractorTest {
         SignupInputBoundary interactor = new SignupInteractor(userRepository, failurePresenter, new CommonUserFactory());
         interactor.execute(inputData);
     }
+
+    @Test
+    void switchToLoginViewTest() {
+        SignupUserDataAccessInterface userRepository = new InMemoryUserDataAccessObject();
+
+        // Wrapper class to capture the call to switchToLoginView
+        class SwitchToLoginViewWrapper implements SignupOutputBoundary {
+            private boolean switchToLoginViewCalled = false;
+
+            @Override
+            public void prepareSuccessView(SignupOutputData user) {
+                // This should not be called in this test
+                fail("Unexpected call to prepareSuccessView.");
+            }
+
+            @Override
+            public void prepareFailView(String error) {
+                // This should not be called in this test
+                fail("Unexpected call to prepareFailView.");
+            }
+
+            @Override
+            public void switchToLoginView() {
+                switchToLoginViewCalled = true;
+            }
+
+            public boolean isSwitchToLoginViewCalled() {
+                return switchToLoginViewCalled;
+            }
+        }
+
+        // Instantiate the wrapper and the interactor
+        SwitchToLoginViewWrapper mockPresenter = new SwitchToLoginViewWrapper();
+        SignupInputBoundary interactor = new SignupInteractor(userRepository, mockPresenter, new CommonUserFactory());
+
+        // Call switchToLoginView on the interactor
+        interactor.switchToLoginView();
+
+        // Verify that switchToLoginView was called
+        assertTrue(mockPresenter.isSwitchToLoginViewCalled(),
+                "Expected switchToLoginView to be called.");
+    }
+
+
 }

@@ -41,8 +41,7 @@ public class WeatherHourlyInteractor implements WeatherHourlyInputBoundary {
                     final WeatherHourlyOutputData outputData = new WeatherHourlyOutputData(
                             weatherData.getJSONArray("hourly"),
                             hour,
-                            city.getString("name"),
-                            false);
+                            city.getString("name"));
 
                     weatherPresenter.prepareSuccessView(outputData);
                 }
