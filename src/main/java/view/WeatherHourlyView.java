@@ -73,7 +73,7 @@ public class WeatherHourlyView extends JPanel implements ActionListener, Propert
         final String[] modeOptions = new String[] {WeatherHourlyViewModel.CURRENT,
                                                    WeatherHourlyViewModel.HOURLY,
                                                    WeatherHourlyViewModel.DAILY};
-        final JComboBox modeComboBox = new JComboBox(modeOptions);
+        final JComboBox<String> modeComboBox = new JComboBox<>(modeOptions);
         modeComboBox.setSelectedItem(WeatherDailyViewModel.HOURLY);
         modeComboBox.setPreferredSize(new Dimension(75, 30));
         modeComboBox.setMaximumSize(new Dimension(75, 30));
