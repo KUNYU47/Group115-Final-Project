@@ -67,7 +67,7 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
         final String[] modeOptions = new String[] {WeatherViewModel.CURRENT,
                                                    WeatherViewModel.HOURLY,
                                                    WeatherViewModel.DAILY};
-        final JComboBox modeComboBox = new JComboBox(modeOptions);
+        final JComboBox<String> modeComboBox = new JComboBox<>(modeOptions);
         modeComboBox.setSelectedItem(WeatherDailyViewModel.CURRENT);
         modeComboBox.setPreferredSize(new Dimension(75, 30));
         modeComboBox.setMaximumSize(new Dimension(75, 30));

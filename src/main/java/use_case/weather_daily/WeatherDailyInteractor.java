@@ -2,6 +2,9 @@ package use_case.weather_daily;
 
 import org.json.JSONObject;
 
+/**
+ * The Weather Daily Interactor.
+ */
 public class WeatherDailyInteractor implements WeatherDailyInputBoundary {
 
     private final WeatherDailyDataAccessInterface weatherDailyDataAccessObject;

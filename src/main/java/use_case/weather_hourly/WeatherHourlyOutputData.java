@@ -12,9 +12,10 @@ public class WeatherHourlyOutputData {
     private final boolean useCaseFailed;
 
     public WeatherHourlyOutputData(JSONArray weatherData,
+                                   int numHour,
                                    String city,
                                    boolean useCaseFailed) {
-        this.hourWeatherData = weatherData.getJSONObject(0);
+        this.hourWeatherData = weatherData.getJSONObject(numHour);
         this.city = city;
         this.useCaseFailed = useCaseFailed;
     }

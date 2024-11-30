@@ -13,9 +13,10 @@ public class WeatherHourlyController {
     /**
      * Executes the Weather Use Case.
      * @param city the city we are referring.
+     * @param hour the hour ahead that we want to forecast.
      */
-    public void execute(String city) {
-        final WeatherHourlyInputData weatherInputData = new WeatherHourlyInputData(city);
+    public void execute(String city, String hour) {
+        final WeatherHourlyInputData weatherInputData = new WeatherHourlyInputData(city, hour);
 
         weatherUseCaseInteractor.execute(weatherInputData);
     }

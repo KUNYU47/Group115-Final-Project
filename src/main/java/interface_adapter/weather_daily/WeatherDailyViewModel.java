@@ -12,8 +12,7 @@ public class WeatherDailyViewModel extends ViewModel<WeatherDailyState> {
 
     public static final String TITLE_LABEL = "Weather Daily Screen";
     public static final String CITY_LABEL = "City Name";
-    public static final String DAY_LABEL =
-            "Enter the number of days ahead for the forecast (an integer between 0 and 7)";
+    public static final String DAY_LABEL = "Days ahead (0 ~ 7)";
     public static final String GET_WEATHER_BUTTON_LABEL = "Get Weather";
     public static final String TEMPERATURE_LABEL = "Temperature: ";
     public static final String CONDITION_LABEL = "Condition: ";
@@ -23,6 +22,7 @@ public class WeatherDailyViewModel extends ViewModel<WeatherDailyState> {
     public static final String CURRENT = "Current";
     public static final String HOURLY = "Hourly";
     public static final String DAILY = "Daily";
+    private static final String[] MODE_OPTIONS = new String[] {CURRENT, HOURLY, DAILY};
 
     private WeatherDailyState state = new WeatherDailyState();
 
@@ -51,5 +51,9 @@ public class WeatherDailyViewModel extends ViewModel<WeatherDailyState> {
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
+    }
+
+    public String[] getModeOptions() {
+        return MODE_OPTIONS;
     }
 }

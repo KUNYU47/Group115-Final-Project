@@ -12,6 +12,7 @@ public class WeatherHourlyViewModel extends ViewModel<WeatherHourlyState> {
 
     public static final String TITLE_LABEL = "Weather Hourly Screen";
     public static final String CITY_LABEL = "City Name";
+    public static final String HOUR_LABEL = "Hours ahead (0 ~ 47)";
     public static final String GET_WEATHER_BUTTON_LABEL = "Get Weather";
     public static final String TEMPERATURE_LABEL = "Temperature: ";
     public static final String CONDITION_LABEL = "Condition: ";
