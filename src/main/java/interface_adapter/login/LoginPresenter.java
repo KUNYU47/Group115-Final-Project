@@ -1,13 +1,9 @@
 package interface_adapter.login;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.change_password.LoggedInState;
-import interface_adapter.change_password.LoggedInViewModel;
 import interface_adapter.choose_pet.ChoosePetState;
 import interface_adapter.choose_pet.ChoosePetViewModel;
 import interface_adapter.signup.SignupViewModel;
-import interface_adapter.weather.WeatherState;
-import interface_adapter.weather.WeatherViewModel;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
 
@@ -18,21 +14,15 @@ public class LoginPresenter implements LoginOutputBoundary {
 
     private final SignupViewModel signupViewModel;
     private final LoginViewModel loginViewModel;
-    private final LoggedInViewModel loggedInViewModel;
-    private final WeatherViewModel weatherViewModel;
     private final ChoosePetViewModel choosePetViewModel;
     private final ViewManagerModel viewManagerModel;
 
     public LoginPresenter(SignupViewModel signupViewModel,
                           ViewManagerModel viewManagerModel,
-                          LoggedInViewModel loggedInViewModel,
-                          WeatherViewModel weatherViewModel,
                           ChoosePetViewModel choosePetViewModel,
                           LoginViewModel loginViewModel) {
         this.signupViewModel = signupViewModel;
         this.viewManagerModel = viewManagerModel;
-        this.loggedInViewModel = loggedInViewModel;
-        this.weatherViewModel = weatherViewModel;
         this.choosePetViewModel = choosePetViewModel;
         this.loginViewModel = loginViewModel;
     }

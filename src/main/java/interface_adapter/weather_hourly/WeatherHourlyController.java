@@ -3,6 +3,9 @@ package interface_adapter.weather_hourly;
 import use_case.weather_hourly.WeatherHourlyInputBoundary;
 import use_case.weather_hourly.WeatherHourlyInputData;
 
+/**
+ * Controller for the Weather Hourly Use Case.
+ */
 public class WeatherHourlyController {
     private final WeatherHourlyInputBoundary weatherUseCaseInteractor;
 

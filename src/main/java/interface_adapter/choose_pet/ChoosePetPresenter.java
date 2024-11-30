@@ -1,12 +1,14 @@
 package interface_adapter.choose_pet;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.change_password.LoggedInState;
 import interface_adapter.change_password.LoggedInViewModel;
 import interface_adapter.weather.WeatherViewModel;
 import use_case.choose_pet.ChoosePetOutputBoundary;
 import use_case.choose_pet.ChoosePetOutputData;
 
+/**
+ * The Presenter for the Choose Pet Use Case.
+ */
 public class ChoosePetPresenter implements ChoosePetOutputBoundary {
     private final ChoosePetViewModel petViewModel;
     private final WeatherViewModel weatherViewModel;

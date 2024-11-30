@@ -1,7 +1,7 @@
 package interface_adapter.weather_hourly;
 
 /**
- * The State information representing the weather information.
+ * The State information representing the weather hourly information.
  */
 public class WeatherHourlyState {
     private String city;

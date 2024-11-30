@@ -9,7 +9,6 @@ import java.beans.PropertyChangeListener;
 import javax.swing.*;
 
 import interface_adapter.login.LoginViewModel;
-import interface_adapter.weather.WeatherState;
 import interface_adapter.weather_daily.WeatherDailyViewModel;
 import interface_adapter.weather_hourly.WeatherHourlyController;
 import interface_adapter.weather_hourly.WeatherHourlyState;

@@ -8,6 +8,9 @@ import interface_adapter.weather_hourly.WeatherHourlyViewModel;
 import use_case.weather_daily.WeatherDailyOutputBoundary;
 import use_case.weather_daily.WeatherDailyOutputData;
 
+/**
+ * The Presenter for the Weather Daily Use Case.
+ */
 public class WeatherDailyPresenter implements WeatherDailyOutputBoundary {
 
     private final WeatherViewModel weatherViewModel;

@@ -3,6 +3,9 @@ package interface_adapter.choose_pet;
 import use_case.choose_pet.ChoosePetInputBoundary;
 import use_case.choose_pet.ChoosePetInputData;
 
+/**
+ * Controller for the Choose Pet Use Case.
+ */
 public class ChoosePetController {
     private final ChoosePetInputBoundary petUseCaseInteractor;
 

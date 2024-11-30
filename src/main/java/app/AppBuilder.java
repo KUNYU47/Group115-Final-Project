@@ -148,6 +148,10 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Adds the Weather Hourly View to the application.
+     * @return this builder.
+     */
     public AppBuilder addWeatherHourlyView() {
         weatherHourlyViewModel = new WeatherHourlyViewModel();
         weatherHourlyView = new WeatherHourlyView(weatherHourlyViewModel);
@@ -155,6 +159,10 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Adds the Weather Daily View to the application.
+     * @return this builder.
+     */
     public AppBuilder addWeatherDailyView() {
         weatherDailyViewModel = new WeatherDailyViewModel();
         weatherDailyView = new WeatherDailyView(weatherDailyViewModel);
@@ -162,6 +170,10 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Adds the Choose Pet View to the application.
+     * @return this builder.
+     */
     public AppBuilder addChoosePetView() {
         choosePetViewModel = new ChoosePetViewModel();
         choosePetView = new ChoosePetView(choosePetViewModel);
@@ -191,8 +203,6 @@ public class AppBuilder {
     public AppBuilder addLoginUseCase() {
         final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(signupViewModel,
                                                                            viewManagerModel,
-                                                                           loggedInViewModel,
-                                                                           weatherViewModel,
                                                                            choosePetViewModel,
                                                                            loginViewModel);
         final LoginInputBoundary loginInteractor = new LoginInteractor(
@@ -262,6 +272,10 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Adds the Weather Houely Use Case to the application.
+     * @return this builder
+     */
     public AppBuilder addWeatherHourlyUseCase() {
         final WeatherHourlyOutputBoundary weatherHourlyOutputBoundary =
                 new WeatherHourlyPresenter(viewManagerModel,
@@ -280,6 +294,10 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Adds the Weather Daily Use Case to the application.
+     * @return this builder
+     */
     public AppBuilder addWeatherDailyUseCase() {
         final WeatherDailyOutputBoundary weatherDailyOutputBoundary =
                 new WeatherDailyPresenter(viewManagerModel,
@@ -298,6 +316,10 @@ public class AppBuilder {
         return this;
     }
 
+    /**
+     * Adds the Choose Pet Use Case to the application.
+     * @return this builder
+     */
     public AppBuilder addChoosePetUseCase() {
         final ChoosePetOutputBoundary choosePetOutputBoundary =
                 new ChoosePetPresenter(viewManagerModel, choosePetViewModel, weatherViewModel, loggedInViewModel);

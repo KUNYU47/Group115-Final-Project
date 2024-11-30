@@ -5,14 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.List;
 
 import javax.swing.*;
 
 import interface_adapter.choose_pet.ChoosePetController;
 import interface_adapter.choose_pet.ChoosePetState;
 import interface_adapter.choose_pet.ChoosePetViewModel;
-import use_case.choose_pet.ChoosePetOutputData;
 
 /**
  * The View for the Choose Pet use case.
@@ -119,6 +117,6 @@ public class ChoosePetView extends JPanel implements ActionListener, PropertyCha
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        // this function will never be run.
     }
 }

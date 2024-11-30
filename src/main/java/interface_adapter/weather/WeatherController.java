@@ -4,7 +4,7 @@ import use_case.weather.WeatherInputBoundary;
 import use_case.weather.WeatherInputData;
 
 /**
- * Controller for the Signup Use Case.
+ * Controller for the Weather Use Case.
  */
 public class WeatherController {
 

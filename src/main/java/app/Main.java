@@ -40,7 +40,6 @@ public class Main {
         application.setResizable(false);
         application.setLocationRelativeTo(null);
 
-//        application.pack();
         application.setVisible(true);
     }
 }

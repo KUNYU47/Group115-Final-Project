@@ -9,7 +9,7 @@ import use_case.weather_hourly.WeatherHourlyOutputBoundary;
 import use_case.weather_hourly.WeatherHourlyOutputData;
 
 /**
- * The Presenter for the Weather Use Case.
+ * The Presenter for the Weather Hourly Use Case.
  */
 public class WeatherHourlyPresenter implements WeatherHourlyOutputBoundary {
 

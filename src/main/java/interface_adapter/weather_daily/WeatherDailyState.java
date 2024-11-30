@@ -1,7 +1,7 @@
 package interface_adapter.weather_daily;
 
 /**
- * The State information representing the weather information.
+ * The State information representing the weather daily information.
  */
 public class WeatherDailyState {
     private String city;

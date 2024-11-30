@@ -9,12 +9,14 @@ import java.beans.PropertyChangeListener;
 import javax.swing.*;
 
 import interface_adapter.login.LoginViewModel;
-import interface_adapter.weather.WeatherState;
 import interface_adapter.weather.WeatherViewModel;
 import interface_adapter.weather_daily.WeatherDailyController;
 import interface_adapter.weather_daily.WeatherDailyState;
 import interface_adapter.weather_daily.WeatherDailyViewModel;
 
+/**
+ * The View for when the user is on Weather Daily Use Case.
+ */
 public class WeatherDailyView extends JPanel implements ActionListener, PropertyChangeListener {
 
     private final String viewName = "weather daily";

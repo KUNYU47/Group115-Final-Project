@@ -1,5 +1,8 @@
 package use_case.weather_daily;
 
+/**
+ * Input boundary for actions which are related with to weather hourly.
+ */
 public interface WeatherDailyInputBoundary {
 
     /**

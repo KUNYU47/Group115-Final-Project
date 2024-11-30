@@ -10,7 +10,6 @@ public class WeatherDailyInteractor implements WeatherDailyInputBoundary {
     private final WeatherDailyDataAccessInterface weatherDailyDataAccessObject;
     private final WeatherDailyOutputBoundary weatherPresenter;
     private final String emptyString = "";
-    private final int dummyInt = -1;
     private final int upperBound = 7;
 
     public WeatherDailyInteractor(WeatherDailyDataAccessInterface weatherDailyDataAccessObject,

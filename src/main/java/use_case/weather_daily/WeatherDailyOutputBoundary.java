@@ -1,5 +1,8 @@
 package use_case.weather_daily;
 
+/**
+ * The output boundary for the Weather Daily Use Case.
+ */
 public interface WeatherDailyOutputBoundary {
 
     /**

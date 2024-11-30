@@ -3,6 +3,9 @@ package interface_adapter.weather_daily;
 import use_case.weather_daily.WeatherDailyInputBoundary;
 import use_case.weather_daily.WeatherDailyInputData;
 
+/**
+ * Controller for the Weather Daily Use Case.
+ */
 public class WeatherDailyController {
     private final WeatherDailyInputBoundary weatherUseCaseInteractor;
 
