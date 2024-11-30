@@ -45,16 +45,19 @@ public class ChangePasswordPresenter implements ChangePasswordOutputBoundary {
         // note: this use case currently can't fail
     }
 
+    @Override
     public void switchToCurrView() {
         viewManagerModel.setState(weatherViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
+    @Override
     public void switchToHourlyView() {
         viewManagerModel.setState(weatherHourlyViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
+    @Override
     public void switchToDailyView() {
         viewManagerModel.setState(weatherDailyViewModel.getViewName());
         viewManagerModel.firePropertyChanged();

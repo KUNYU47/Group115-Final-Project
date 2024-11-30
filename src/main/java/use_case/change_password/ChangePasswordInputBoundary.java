@@ -25,5 +25,4 @@ public interface ChangePasswordInputBoundary {
      * Executes the switch to daily forecast view use case.
      */
     void switchToDailyView();
-
 }

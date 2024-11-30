@@ -3,8 +3,6 @@ package view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -74,22 +72,15 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         buttons.add(cancel);
         buttons.setOpaque(false);
 
-        logIn.addActionListener(
+        logIn.addActionListener(getActionListener(loginViewModel));
+
+        cancel.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(logIn)) {
-                            final LoginState currentState = loginViewModel.getState();
-
-                            loginController.execute(
-                                    currentState.getUsername(),
-                                    currentState.getPassword()
-                            );
-                        }
+                        loginController.switchToSignUpView();
                     }
                 }
         );
-
-        cancel.addActionListener(this);
 
         usernameInputField.getDocument().addDocumentListener(new DocumentListener() {
 
@@ -152,6 +143,22 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         this.add(layeredPane, BorderLayout.CENTER);
     }
 
+    @NotNull
+    private ActionListener getActionListener(LoginViewModel currViewModel) {
+        return new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                if (evt.getSource().equals(logIn)) {
+                    final LoginState currentState = currViewModel.getState();
+
+                    loginController.execute(
+                            currentState.getUsername(),
+                            currentState.getPassword()
+                    );
+                }
+            }
+        };
+    }
+
     private void setMainLayout(JPanel panel,
                                JLabel title,
                                LabelTextPanel user,
@@ -177,13 +184,13 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
         layout.setVerticalGroup(
                 layout.createSequentialGroup()
-                .addGap(75)
+                        .addGap(75)
                         .addComponent(title)
                         .addComponent(user)
                         .addComponent(password)
                         .addComponent(usernameErrorField)
                         .addGap(20)
-                .addComponent(buttons)
+                        .addComponent(buttons)
                         .addGap(75));
 
     }

@@ -1,6 +1,8 @@
 package interface_adapter.choose_pet;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.change_password.LoggedInState;
+import interface_adapter.change_password.LoggedInViewModel;
 import interface_adapter.weather.WeatherViewModel;
 import use_case.choose_pet.ChoosePetOutputBoundary;
 import use_case.choose_pet.ChoosePetOutputData;
@@ -8,14 +10,17 @@ import use_case.choose_pet.ChoosePetOutputData;
 public class ChoosePetPresenter implements ChoosePetOutputBoundary {
     private final ChoosePetViewModel petViewModel;
     private final WeatherViewModel weatherViewModel;
+    private final LoggedInViewModel loggedInViewModel;
     private final ViewManagerModel viewManagerModel;
 
     public ChoosePetPresenter(ViewManagerModel viewManagerModel,
                               ChoosePetViewModel petViewModel,
-                              WeatherViewModel weatherViewModel) {
+                              WeatherViewModel weatherViewModel,
+                              LoggedInViewModel loggedInViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.petViewModel = petViewModel;
         this.weatherViewModel = weatherViewModel;
+        this.loggedInViewModel = loggedInViewModel;
     }
 
     @Override

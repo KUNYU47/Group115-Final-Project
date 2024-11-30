@@ -71,7 +71,7 @@ public class WeatherDailyPresenter implements WeatherDailyOutputBoundary {
     }
 
     private void updateLastView(String currView) {
-        LoggedInState lastState = loggedInViewModel.getState();
+        final LoggedInState lastState = loggedInViewModel.getState();
         lastState.setLastView(currView);
         loggedInViewModel.setState(lastState);
         loggedInViewModel.firePropertyChanged();

@@ -189,8 +189,12 @@ public class AppBuilder {
      * @return this builder
      */
     public AppBuilder addLoginUseCase() {
-        final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel,
-                loggedInViewModel, weatherViewModel, choosePetViewModel, loginViewModel);
+        final LoginOutputBoundary loginOutputBoundary = new LoginPresenter(signupViewModel,
+                                                                           viewManagerModel,
+                                                                           loggedInViewModel,
+                                                                           weatherViewModel,
+                                                                           choosePetViewModel,
+                                                                           loginViewModel);
         final LoginInputBoundary loginInteractor = new LoginInteractor(
                 userDataAccessObject, loginOutputBoundary);
 
@@ -296,7 +300,7 @@ public class AppBuilder {
 
     public AppBuilder addChoosePetUseCase() {
         final ChoosePetOutputBoundary choosePetOutputBoundary =
-                new ChoosePetPresenter(viewManagerModel, choosePetViewModel, weatherViewModel);
+                new ChoosePetPresenter(viewManagerModel, choosePetViewModel, weatherViewModel, loggedInViewModel);
 
         final ChoosePetInputBoundary choosePetInteractor = new ChoosePetInteractor(choosePetOutputBoundary);
 

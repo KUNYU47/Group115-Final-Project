@@ -5,6 +5,7 @@ import interface_adapter.change_password.LoggedInState;
 import interface_adapter.change_password.LoggedInViewModel;
 import interface_adapter.choose_pet.ChoosePetState;
 import interface_adapter.choose_pet.ChoosePetViewModel;
+import interface_adapter.signup.SignupViewModel;
 import interface_adapter.weather.WeatherState;
 import interface_adapter.weather.WeatherViewModel;
 import use_case.login.LoginOutputBoundary;
@@ -15,17 +16,20 @@ import use_case.login.LoginOutputData;
  */
 public class LoginPresenter implements LoginOutputBoundary {
 
+    private final SignupViewModel signupViewModel;
     private final LoginViewModel loginViewModel;
     private final LoggedInViewModel loggedInViewModel;
     private final WeatherViewModel weatherViewModel;
     private final ChoosePetViewModel choosePetViewModel;
     private final ViewManagerModel viewManagerModel;
 
-    public LoginPresenter(ViewManagerModel viewManagerModel,
+    public LoginPresenter(SignupViewModel signupViewModel,
+                          ViewManagerModel viewManagerModel,
                           LoggedInViewModel loggedInViewModel,
                           WeatherViewModel weatherViewModel,
                           ChoosePetViewModel choosePetViewModel,
                           LoginViewModel loginViewModel) {
+        this.signupViewModel = signupViewModel;
         this.viewManagerModel = viewManagerModel;
         this.loggedInViewModel = loggedInViewModel;
         this.weatherViewModel = weatherViewModel;
@@ -35,12 +39,6 @@ public class LoginPresenter implements LoginOutputBoundary {
 
     @Override
     public void prepareSuccessView(LoginOutputData response) {
-
-//        final WeatherState weatherState = weatherViewModel.getState();
-//        this.weatherViewModel.setState(weatherState);
-//        this.weatherViewModel.firePropertyChanged();
-//
-//        this.viewManagerModel.setState(weatherViewModel.getViewName());
 
         final ChoosePetState choosePetState = choosePetViewModel.getState();
         this.choosePetViewModel.setState(choosePetState);
@@ -55,5 +53,11 @@ public class LoginPresenter implements LoginOutputBoundary {
         final LoginState loginState = loginViewModel.getState();
         loginState.setLoginError(error);
         loginViewModel.firePropertyChanged();
+    }
+
+    @Override
+    public void switchToSignUpView() {
+        viewManagerModel.setState(signupViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 }

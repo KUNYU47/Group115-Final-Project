@@ -35,6 +35,7 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
 
     private final JButton logOut;
     private final JButton goBack;
+    private final JButton changePet;
 
     private final JTextField passwordInputField = new JTextField(15);
     private final JButton changePassword;
@@ -58,6 +59,9 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
 
         logOut = new JButton("Log Out");
         buttons.add(logOut);
+
+        changePet = new JButton("Change Pet");
+        buttons.add(changePet);
 
         changePassword = new JButton("Change Password");
         buttons.add(changePassword);
@@ -108,6 +112,7 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
                     }
                 });
 
+        // This is the actionlistener for changePassword button.
         changePassword.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
                 evt -> {
@@ -119,9 +124,9 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
                                 currentState.getPassword()
                         );
                     }
-                }
-        );
+                });
 
+        // This is the actionlistener for logOut button.
         logOut.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
                 evt -> {
@@ -134,10 +139,10 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
                 }
         );
 
+        // final construction.
         this.add(title);
         this.add(usernameInfo);
         this.add(username);
-
         this.add(passwordInfo);
         this.add(passwordErrorField);
         this.add(buttons);
