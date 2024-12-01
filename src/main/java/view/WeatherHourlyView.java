@@ -147,11 +147,11 @@ public class WeatherHourlyView extends JPanel implements ActionListener, Propert
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         final WeatherHourlyState state = (WeatherHourlyState) evt.getNewValue();
-        setFields(state);
         if (state.getErrorMessage() != null) {
             errorMessageLabel.setText(state.getErrorMessage());
             JOptionPane.showMessageDialog(this, errorMessageLabel);
         }
+        setFields(state);
     }
 
     private void setMainLayout(JPanel panel,

@@ -199,12 +199,11 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         final WeatherDailyState state = (WeatherDailyState) evt.getNewValue();
-        setFields(state);
         if (state.getErrorMessage() != null) {
             errorMessageLabel.setText(state.getErrorMessage());
             JOptionPane.showMessageDialog(this, errorMessageLabel);
         }
-
+        setFields(state);
     }
 
     private void setFields(WeatherDailyState state) {

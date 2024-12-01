@@ -132,11 +132,11 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         final WeatherState state = (WeatherState) evt.getNewValue();
-        setFields(state);
         if (state.getErrorMessage() != null) {
             errorMessageLabel.setText(state.getErrorMessage());
             JOptionPane.showMessageDialog(this, errorMessageLabel);
         }
+        setFields(state);
     }
 
     private void setMainLayout(JPanel panel,
