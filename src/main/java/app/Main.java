@@ -1,6 +1,6 @@
 package app;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 /**
  * The Main class of our application.
@@ -39,7 +39,9 @@ public class Main {
         application.setSize(width, height);
         application.setResizable(false);
         application.setLocationRelativeTo(null);
-
         application.setVisible(true);
+
+        final ImageIcon image = new ImageIcon("resources/images/weather_app_icon.png");
+        application.setIconImage(image.getImage());
     }
 }
