@@ -260,6 +260,7 @@ public class AppBuilder {
                                      weatherViewModel,
                                      weatherHourlyViewModel,
                                      weatherDailyViewModel,
+                                     choosePetViewModel,
                                      loggedInViewModel);
 
         final WeatherDataAccessInterface weatherDataAccessObject = new WeatherDataAccessObject();
@@ -322,7 +323,7 @@ public class AppBuilder {
      */
     public AppBuilder addChoosePetUseCase() {
         final ChoosePetOutputBoundary choosePetOutputBoundary =
-                new ChoosePetPresenter(viewManagerModel, choosePetViewModel, weatherViewModel, loggedInViewModel);
+                new ChoosePetPresenter(viewManagerModel, choosePetViewModel, weatherViewModel);
 
         final ChoosePetInputBoundary choosePetInteractor = new ChoosePetInteractor(choosePetOutputBoundary);
 
