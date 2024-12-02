@@ -23,6 +23,7 @@ public class ChoosePetView extends JPanel implements ActionListener, PropertyCha
     private ChoosePetController choosePetController;
 
     private final JComboBox<String> petDropdown;
+    private PetMovementPanel petMovementPanel = new PetMovementPanel("");
     private final JLabel messageLabel;
     private final JButton confirmButton;
     private final JButton switchToWeatherButton;
@@ -57,25 +58,31 @@ public class ChoosePetView extends JPanel implements ActionListener, PropertyCha
                 }
         );
 
+        confirmButton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        final String selectedPet = (String) petDropdown.getSelectedItem();
+                        if (selectedPet != null) {
+
+                            ChoosePetView.this.remove(petMovementPanel);
+                            petMovementPanel = new PetMovementPanel(selectedPet);
+                            petMovementPanel.setOpaque(false);
+                            ChoosePetView.this.add(petMovementPanel);
+
+                            ChoosePetView.this.revalidate();
+                            ChoosePetView.this.repaint();
+                            System.out.println("pet added");
+                        }
+                        else {
+                            displayErrorMessage("Please select a pet!");
+                        }
+                    }
+                }
+        );
+
         // Message label for displaying success or error
         messageLabel = new JLabel(" ");
         add(messageLabel);
-    }
-
-    /**
-     * Adds an action listener to the confirm button.
-     * @param actionListener The action listener for handling confirm button clicks.
-     */
-    public void addConfirmButtonListener(ActionListener actionListener) {
-        confirmButton.addActionListener(actionListener);
-    }
-
-    /**
-     * Gets the selected pet from the dropdown.
-     * @return The selected pet.
-     */
-    public String getSelectedPet() {
-        return (String) petDropdown.getSelectedItem();
     }
 
     /**
@@ -99,7 +106,14 @@ public class ChoosePetView extends JPanel implements ActionListener, PropertyCha
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         final ChoosePetState state = (ChoosePetState) evt.getNewValue();
-        if (!"".equals(state.getSelectedPet())) {
+        if (petDropdown.getSelectedItem() != null && !"".equals(petDropdown.getSelectedItem())) {
+            ChoosePetView.this.remove(petMovementPanel);
+            petMovementPanel = new PetMovementPanel(petDropdown.getSelectedItem().toString());
+            ChoosePetView.this.add(petMovementPanel, BorderLayout.CENTER);
+            ChoosePetView.this.revalidate();
+            ChoosePetView.this.repaint();
+        }
+        else if (!"".equals(state.getSelectedPet())) {
             displaySuccessMessage(state.getSelectedPet());
         }
         else {
