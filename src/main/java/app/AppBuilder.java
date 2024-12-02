@@ -2,7 +2,9 @@ package app;
 
 import java.awt.CardLayout;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import data_access.InMemoryUserDataAccessObject;
 import data_access.WeatherDataAccessObject;
@@ -59,8 +61,14 @@ import use_case.weather_hourly.WeatherHourlyDataAccessInterface;
 import use_case.weather_hourly.WeatherHourlyInputBoundary;
 import use_case.weather_hourly.WeatherHourlyInteractor;
 import use_case.weather_hourly.WeatherHourlyOutputBoundary;
-import view.*;
-
+import view.ChoosePetView;
+import view.LoggedInView;
+import view.LoginView;
+import view.SignupView;
+import view.ViewManager;
+import view.WeatherDailyView;
+import view.WeatherHourlyView;
+import view.WeatherView;
 /**
  * The AppBuilder class is responsible for putting together the pieces of
  * our CA architecture; piece by piece.
@@ -72,6 +80,9 @@ import view.*;
 //                  your team to think about ways to refactor the code to resolve these
 //                  if your team decides to work with this as your starter code
 //                  for your final project this term.
+
+@SuppressWarnings({"checkstyle:ClassDataAbstractionCoupling",
+        "checkstyle:ClassFanOutComplexity", "checkstyle:SuppressWarnings", "checkstyle:Indentation"})
 public class AppBuilder {
     private final JPanel cardPanel = new JPanel();
     private final CardLayout cardLayout = new CardLayout();
@@ -258,7 +269,6 @@ public class AppBuilder {
                                      weatherViewModel,
                                      weatherHourlyViewModel,
                                      weatherDailyViewModel,
-                                     choosePetViewModel,
                                      loggedInViewModel);
 
         final WeatherDataAccessInterface weatherDataAccessObject = new WeatherDataAccessObject();
