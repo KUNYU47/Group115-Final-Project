@@ -1,6 +1,7 @@
 package interface_adapter.change_password;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.choose_pet.ChoosePetViewModel;
 import interface_adapter.weather.WeatherViewModel;
 import interface_adapter.weather_daily.WeatherDailyViewModel;
 import interface_adapter.weather_hourly.WeatherHourlyViewModel;
@@ -15,17 +16,20 @@ public class ChangePasswordPresenter implements ChangePasswordOutputBoundary {
     private final WeatherViewModel weatherViewModel;
     private final WeatherHourlyViewModel weatherHourlyViewModel;
     private final WeatherDailyViewModel weatherDailyViewModel;
+    private final ChoosePetViewModel choosePetViewModel;
     private final LoggedInViewModel loggedInViewModel;
     private final ViewManagerModel viewManagerModel;
 
     public ChangePasswordPresenter(WeatherViewModel weatherViewModel,
                                    WeatherHourlyViewModel weatherHourlyViewModel,
                                    WeatherDailyViewModel weatherDailyViewModel,
+                                   ChoosePetViewModel choosePetViewModel,
                                    LoggedInViewModel loggedInViewModel,
                                    ViewManagerModel viewManagerModel) {
         this.weatherViewModel = weatherViewModel;
         this.weatherHourlyViewModel = weatherHourlyViewModel;
         this.weatherDailyViewModel = weatherDailyViewModel;
+        this.choosePetViewModel = choosePetViewModel;
         this.loggedInViewModel = loggedInViewModel;
         this.viewManagerModel = viewManagerModel;
     }
@@ -60,6 +64,12 @@ public class ChangePasswordPresenter implements ChangePasswordOutputBoundary {
     @Override
     public void switchToDailyView() {
         viewManagerModel.setState(weatherDailyViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+    }
+
+    @Override
+    public void switchToChoosePetView() {
+        viewManagerModel.setState(choosePetViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 }

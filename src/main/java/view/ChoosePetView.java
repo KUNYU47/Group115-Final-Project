@@ -63,6 +63,10 @@ public class ChoosePetView extends JPanel implements ActionListener, PropertyCha
                     public void actionPerformed(ActionEvent evt) {
                         final String selectedPet = (String) petDropdown.getSelectedItem();
                         if (selectedPet != null) {
+                            final ChoosePetState currentState = choosePetViewModel.getState();
+                            currentState.setSelectedPet(selectedPet);
+                            choosePetViewModel.setState(currentState);
+                            choosePetViewModel.firePropertyChanged();
 
                             ChoosePetView.this.remove(petMovementPanel);
                             petMovementPanel = new PetMovementPanel(selectedPet);

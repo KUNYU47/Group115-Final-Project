@@ -41,7 +41,7 @@ public class PetMovementPanel extends JPanel {
         // Initialize position variables
         random = new Random();
         petX = 150;
-        petY = 50;
+        petY = 100;
 
         // Start animation
         startAnimation();
@@ -91,10 +91,18 @@ public class PetMovementPanel extends JPanel {
     }
 
     private void keepPetInBounds() {
-        if (petX < 0) petX = 0;
-        if (petY < 0) petY = 0;
-        if (petX > getWidth() - petLabel.getWidth()) petX = getWidth() - petLabel.getWidth();
-        if (petY > getHeight() - petLabel.getHeight()) petY = getHeight() - petLabel.getHeight();
+        if (petX < 0) {
+            petX = 0;
+        }
+        if (petY < 0) {
+            petY = 0;
+        }
+        if (petX > getWidth() - petLabel.getWidth()) {
+            petX = getWidth() - petLabel.getWidth();
+        }
+        if (petY > getHeight() - petLabel.getHeight()) {
+            petY = getHeight() - petLabel.getHeight();
+        }
     }
 
     private void loadPetGifs(String petType) {
@@ -103,24 +111,25 @@ public class PetMovementPanel extends JPanel {
                 sitGif = new ImageIcon("resources/pet_packs/dogpack_gifs/dog_sit_12fps.gif");
                 idleGif = new ImageIcon("resources/pet_packs/dogpack_gifs/dog_idle_12fps.gif");
                 runGif = new ImageIcon("resources/pet_packs/dogpack_gifs/dog_run_16fps.gif");
+
                 break;
 
             case "Cat":
-                sitGif = new ImageIcon("path/to/cat_sleep.gif");
-                idleGif = new ImageIcon("path/to/cat_idle.gif");
-                runGif = new ImageIcon("path/to/cat_run.gif");
+                sitGif = new ImageIcon("resources/pet_packs/catset_gifs/cat01_gifs/cat01_sit_8fps.gif");
+                idleGif = new ImageIcon("resources/pet_packs/catset_gifs/cat01_gifs/cat01_idle_8fps.gif");
+                runGif = new ImageIcon("resources/pet_packs/catset_gifs/cat01_gifs/cat01_run_12fps.gif");
                 break;
 
             case "Fox":
-                sitGif = new ImageIcon("path/to/fox_sleep.gif");
-                idleGif = new ImageIcon("path/to/fox_idle.gif");
-                runGif = new ImageIcon("path/to/fox_run.gif");
+                sitGif = new ImageIcon("resources/pet_packs/foxpack_gifs/fox_sit01_12fps.gif");
+                idleGif = new ImageIcon("resources/pet_packs/foxpack_gifs/fox_idle_12fps.gif");
+                runGif = new ImageIcon("resources/pet_packs/foxpack_gifs/fox_run_16fps.gif");
                 break;
 
             case "Rabbit":
-                sitGif = new ImageIcon("path/to/rabbit_sleep.gif");
-                idleGif = new ImageIcon("path/to/rabbit_idle.gif");
-                runGif = new ImageIcon("path/to/rabbit_run.gif");
+                sitGif = new ImageIcon("resources/pet_packs/bunnypack_gifs/bunny_sit_8fps.gif");
+                idleGif = new ImageIcon("resources/pet_packs/bunnypack_gifs/bunny_idle_8fps.gif");
+                runGif = new ImageIcon("resources/pet_packs/bunnypack_gifs/bunny_run_16fps.gif");
                 break;
 
             default:

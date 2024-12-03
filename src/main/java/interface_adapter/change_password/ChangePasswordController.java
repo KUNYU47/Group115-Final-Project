@@ -44,4 +44,8 @@ public class ChangePasswordController {
     public void switchToDailyView() {
         userChangePasswordUseCaseInteractor.switchToDailyView();
     }
+
+    public void switchToChoosePetView() {
+        userChangePasswordUseCaseInteractor.switchToChoosePetView();
+    }
 }

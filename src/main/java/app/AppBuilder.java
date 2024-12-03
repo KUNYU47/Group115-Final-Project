@@ -82,7 +82,9 @@ import view.WeatherView;
 //                  for your final project this term.
 
 @SuppressWarnings({"checkstyle:ClassDataAbstractionCoupling",
-        "checkstyle:ClassFanOutComplexity", "checkstyle:SuppressWarnings", "checkstyle:Indentation"})
+                   "checkstyle:ClassFanOutComplexity",
+                   "checkstyle:SuppressWarnings"})
+
 public class AppBuilder {
     private final JPanel cardPanel = new JPanel();
     private final CardLayout cardLayout = new CardLayout();
@@ -231,6 +233,7 @@ public class AppBuilder {
                 new ChangePasswordPresenter(weatherViewModel,
                                             weatherHourlyViewModel,
                                             weatherDailyViewModel,
+                                            choosePetViewModel,
                                             loggedInViewModel,
                                             viewManagerModel);
 

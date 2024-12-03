@@ -36,6 +36,8 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
     private final JButton getWeatherButton;
     private final JButton goToSettingsButton;
 
+    private PetMovementPanel petMovementPanel = new PetMovementPanel("");
+
     private final JPanel mainPanel = new JPanel();
     private final JLayeredPane layeredPane = new JLayeredPane();
 
@@ -88,6 +90,8 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
         buttons.add(goToSettingsButton);
         buttons.setOpaque(false);
 
+        petMovementPanel.setOpaque(false);
+
         // Add action listener to the "Get Weather" button
         getWeatherButton.addActionListener(
                 new ActionListener() {
@@ -121,7 +125,7 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
 
         mainPanel.setOpaque(false);
         mainPanel.setBounds(0, 0, scaledIcon.getIconWidth(), scaledIcon.getIconHeight());
-        setMainLayout(mainPanel, title, cityInputPanel, modeComboBox, buttons, weatherInfoPanel);
+        setMainLayout(mainPanel, title, cityInputPanel, modeComboBox, buttons, weatherInfoPanel, petMovementPanel);
 
         layeredPane.add(mainPanel, JLayeredPane.PALETTE_LAYER);
 
@@ -136,15 +140,40 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
             errorMessageLabel.setText(state.getErrorMessage());
             JOptionPane.showMessageDialog(this, errorMessageLabel);
         }
+        setPet(state);
         setFields(state);
+    }
+
+    private void setPet(WeatherState state) {
+        if (petMovementPanel != null) {
+            mainPanel.remove(petMovementPanel);
+        }
+        if (state.getPetType() != null && !state.getPetType().isEmpty()) {
+            petMovementPanel = new PetMovementPanel(state.getPetType());
+            petMovementPanel.setOpaque(false);
+
+            layeredPane.remove(mainPanel);
+            setMainLayout(mainPanel,
+                          (JLabel) mainPanel.getComponent(0),
+                          (JPanel) mainPanel.getComponent(1),
+                          (JComboBox<String>) mainPanel.getComponent(2),
+                          (JPanel) mainPanel.getComponent(3),
+                          (JPanel) mainPanel.getComponent(4),
+                          petMovementPanel);
+            layeredPane.add(mainPanel, JLayeredPane.PALETTE_LAYER);
+
+            this.revalidate();
+            this.repaint();
+        }
     }
 
     private void setMainLayout(JPanel panel,
                                JLabel title,
                                JPanel cityInputPanel,
-                               JComboBox modeComboBox,
+                               JComboBox<String> modeComboBox,
                                JPanel buttons,
-                               JPanel weatherInfoPanel) {
+                               JPanel weatherInfoPanel,
+                               PetMovementPanel petPanel) {
         final GroupLayout layout = new GroupLayout(panel);
         panel.setLayout(layout);
 
@@ -160,6 +189,7 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
                                 .addGap(40))
                         .addComponent(buttons)
                         .addComponent(weatherInfoPanel)
+                        .addComponent(petPanel)
         );
 
         layout.setVerticalGroup(
@@ -172,7 +202,8 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
                                 .addComponent(modeComboBox))
                         .addComponent(buttons)
                         .addComponent(weatherInfoPanel)
-                        .addGap(100)
+                        .addComponent(petPanel)
+                        .addGap(30)
         );
     }
 
@@ -186,7 +217,7 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
 
     private Icon getUpdatedIcon(WeatherState state) {
         final String condition = state.getCondition();
-        ImageIcon initialImage = new ImageIcon();
+        final ImageIcon initialImage;
 
         if ("Thunderstorm".equals(condition)) {
             initialImage =
@@ -203,7 +234,7 @@ public class WeatherView extends JPanel implements ActionListener, PropertyChang
         else if ("Snow".equals(condition)) {
             initialImage = new ImageIcon("resources/images/weather_conditions/snow.jpg");
         }
-        else if ("Clear".equals(condition)) {
+        else {
             initialImage = new ImageIcon("resources/images/weather_conditions/clear.jpg");
         }
         return getScaledIcon(initialImage);

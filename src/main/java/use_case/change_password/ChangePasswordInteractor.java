@@ -44,4 +44,9 @@ public class ChangePasswordInteractor implements ChangePasswordInputBoundary {
     public void switchToDailyView() {
         userPresenter.switchToDailyView();
     }
+
+    @Override
+    public void switchToChoosePetView() {
+        userPresenter.switchToChoosePetView();
+    }
 }

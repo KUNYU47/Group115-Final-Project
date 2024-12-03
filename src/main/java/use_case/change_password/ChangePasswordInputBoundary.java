@@ -25,4 +25,9 @@ public interface ChangePasswordInputBoundary {
      * Executes the switch to daily forecast view use case.
      */
     void switchToDailyView();
+
+    /**
+     * Executes the switch to choose pet view use case.
+     */
+    void switchToChoosePetView();
 }

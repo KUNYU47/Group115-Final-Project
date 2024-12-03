@@ -40,8 +40,10 @@ public class WeatherPresenter implements WeatherOutputBoundary {
         weatherState.setCondition(outputData.getCondition());
         weatherState.setDescription(outputData.getDescription());
         weatherState.setErrorMessage(null);
-        weatherViewModel.setState(weatherState);
+        final String currPet = weatherState.getPetType();
+        weatherState.setPetType(currPet);
 
+        weatherViewModel.setState(weatherState);
         weatherViewModel.firePropertyChanged();
 
         viewManagerModel.setState(weatherViewModel.getViewName());

@@ -60,6 +60,10 @@ public class ChoosePetPresenter implements ChoosePetOutputBoundary {
 
     @Override
     public void switchToCurrView() {
+        final ChoosePetState currentState = petViewModel.getState();
+        final String petType = currentState.getSelectedPet();
+        weatherViewModel.setPetType(petType);
+        weatherViewModel.firePropertyChanged();
         // Update the view manager to switch to the current view of the pet view model
         viewManagerModel.setState(weatherViewModel.getViewName());
         viewManagerModel.firePropertyChanged();

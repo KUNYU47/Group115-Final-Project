@@ -41,6 +41,17 @@ public class WeatherViewModel extends ViewModel<WeatherState> {
         return this.state;
     }
 
+    /**
+     * Set the pet type in WeatherState when switching view.
+     * @param petType the pet type that user picked.
+     */
+    public void setPetType(String petType) {
+        final WeatherState currState = getState();
+        currState.setPetType(petType);
+        setState(currState);
+        firePropertyChanged();
+    }
+
     @Override
     public void firePropertyChanged() {
         support.firePropertyChange("state", null, this.state);

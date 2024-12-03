@@ -30,4 +30,9 @@ public interface ChangePasswordOutputBoundary {
      * Switch to daily forecast view.
      */
     void switchToDailyView();
+
+    /**
+     * Switch to choose pet view.
+     */
+    void switchToChoosePetView();
 }

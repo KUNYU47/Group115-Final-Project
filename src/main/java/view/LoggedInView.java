@@ -126,6 +126,14 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
                     }
                 });
 
+        changePet.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        changePasswordController.switchToChoosePetView();
+                    }
+                }
+        );
+
         // This is the actionlistener for logOut button.
         logOut.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
