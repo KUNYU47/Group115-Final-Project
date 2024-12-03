@@ -64,12 +64,20 @@ public class WeatherDailyPresenter implements WeatherDailyOutputBoundary {
 
     @Override
     public void switchToCurrView() {
+        final WeatherDailyState weatherDailyState = weatherDailyViewModel.getState();
+        final String petType = weatherDailyState.getPetType();
+        weatherViewModel.setPetType(petType);
+        weatherViewModel.firePropertyChanged();
         viewManagerModel.setState(weatherViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
     @Override
     public void switchToHourlyView() {
+        final WeatherDailyState weatherDailyState = weatherDailyViewModel.getState();
+        final String petType = weatherDailyState.getPetType();
+        weatherHourlyViewModel.setPetType(petType);
+        weatherHourlyViewModel.firePropertyChanged();
         viewManagerModel.setState(weatherHourlyViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }

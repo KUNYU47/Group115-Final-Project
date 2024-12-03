@@ -4,6 +4,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.change_password.LoggedInState;
 import interface_adapter.change_password.LoggedInViewModel;
 import interface_adapter.weather.WeatherViewModel;
+import interface_adapter.weather_daily.WeatherDailyState;
 import interface_adapter.weather_daily.WeatherDailyViewModel;
 import use_case.weather_hourly.WeatherHourlyOutputBoundary;
 import use_case.weather_hourly.WeatherHourlyOutputData;
@@ -66,12 +67,20 @@ public class WeatherHourlyPresenter implements WeatherHourlyOutputBoundary {
 
     @Override
     public void switchToCurrView() {
+        final WeatherHourlyState weatherState = weatherHourlyViewModel.getState();
+        final String petType = weatherState.getPetType();
+        weatherViewModel.setPetType(petType);
+        weatherViewModel.firePropertyChanged();
         viewManagerModel.setState(weatherViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
     @Override
     public void switchToDailyView() {
+        final WeatherHourlyState currState = weatherHourlyViewModel.getState();
+        final String petType = currState.getPetType();
+        weatherDailyViewModel.setPetType(petType);
+        weatherDailyViewModel.firePropertyChanged();
         viewManagerModel.setState(weatherDailyViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
