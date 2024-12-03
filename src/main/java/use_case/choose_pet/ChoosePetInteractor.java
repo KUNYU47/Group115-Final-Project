@@ -12,7 +12,7 @@ public class ChoosePetInteractor implements ChoosePetInputBoundary {
     private final ChoosePetOutputBoundary choosePetPresenter;
 
     // A static list of available pets
-    private final List<String> AVAILABLE_PETS = Arrays.asList("Dog", "Cat", "Rabbit", "Fox");
+    private final List<String> availablePets = Arrays.asList("Dog", "Cat", "Rabbit", "Fox");
 
     /**
      * Constructor for ChoosePetInteractor.
@@ -27,8 +27,9 @@ public class ChoosePetInteractor implements ChoosePetInputBoundary {
         final String selectedPet = inputData.getSelectedPet();
 
         // Check if the selected pet is valid (exists in the available pets list)
-        if (selectedPet == null || selectedPet.isEmpty() || !AVAILABLE_PETS.contains(selectedPet)) {
-            choosePetPresenter.prepareFailView("Invalid pet selection. Please select a valid pet from: " + AVAILABLE_PETS);
+        if (selectedPet == null || selectedPet.isEmpty() || !availablePets.contains(selectedPet)) {
+            choosePetPresenter.prepareFailView(
+                    "Invalid pet selection. Please select a valid pet from: " + availablePets);
         }
         else {
             // If valid, create output data and prepare the success view

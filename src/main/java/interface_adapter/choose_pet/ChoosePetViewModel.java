@@ -9,11 +9,12 @@ import interface_adapter.ViewModel;
  * The View Model for the Choose Pet View.
  */
 public class ChoosePetViewModel extends ViewModel<ChoosePetState> {
-
-    public static final String TITLE_LABEL = "Choose Pet Screen";
-    public static final String PET_LABEL = "Select Your Pet";
-    public static final String CONFIRM_BUTTON_LABEL = "Confirm Selection";
-    public static final String ERROR_LABEL = "Error: ";
+    /**
+    * Public static final String TITLE_LABEL = "Choose Pet Screen".
+    * public static final String PET_LABEL = "Select Your Pet";
+    * public static final String CONFIRM_BUTTON_LABEL = "Confirm Selection";
+    * public static final String ERROR_LABEL = "Error: ";
+    */
 
     private ChoosePetState state = new ChoosePetState();
 

@@ -10,7 +10,8 @@ public class ChoosePetOutputData {
 
     /**
      * Constructor for ChoosePetOutputData.
-     * @param selectedPet The name of the selected pet.
+     *
+     * @param selectedPet    The name of the selected pet.
      * @param successMessage A message indicating the success of the operation.
      */
     public ChoosePetOutputData(String selectedPet, String successMessage) {
@@ -20,6 +21,7 @@ public class ChoosePetOutputData {
 
     /**
      * Gets the name of the selected pet.
+     *
      * @return The selected pet.
      */
     public String getSelectedPet() {
@@ -28,6 +30,7 @@ public class ChoosePetOutputData {
 
     /**
      * Gets the success message.
+     *
      * @return The success message.
      */
     public String getSuccessMessage() {

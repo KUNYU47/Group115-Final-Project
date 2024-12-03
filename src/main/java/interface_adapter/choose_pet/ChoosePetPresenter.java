@@ -1,8 +1,6 @@
 package interface_adapter.choose_pet;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.change_password.LoggedInViewModel;
-import interface_adapter.weather.WeatherState;
 import interface_adapter.weather.WeatherViewModel;
 import interface_adapter.weather_daily.WeatherDailyViewModel;
 import interface_adapter.weather_hourly.WeatherHourlyViewModel;

@@ -1,7 +1,5 @@
 package interface_adapter.choose_pet;
 
-import java.util.List;
-
 /**
  * The State information representing the pet.
  */
