@@ -62,7 +62,7 @@ public class WeatherHourlyInteractor implements WeatherHourlyInputBoundary {
         boolean validHour;
         try {
             Integer.parseInt(inputHour);
-            validHour = 0 <= Integer.parseInt(inputHour) && Integer.parseInt(inputHour) < upperBound;
+            validHour = 0 <= Integer.parseInt(inputHour) && Integer.parseInt(inputHour) <= upperBound;
         }
         catch (NumberFormatException exception) {
             validHour = false;
