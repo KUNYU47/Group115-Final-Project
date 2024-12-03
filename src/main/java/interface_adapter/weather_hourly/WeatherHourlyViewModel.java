@@ -4,6 +4,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 import interface_adapter.ViewModel;
+import interface_adapter.weather_daily.WeatherDailyState;
 
 /**
  * The View Model for the Weather Hourly View.
@@ -49,6 +50,17 @@ public class WeatherHourlyViewModel extends ViewModel<WeatherHourlyState> {
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
+    }
+
+    /**
+     * Set the pet type in WeatherHourlyState when switching view.
+     * @param petType the pet type that user picked.
+     */
+    public void setPetType(String petType) {
+        final WeatherHourlyState currState = getState();
+        currState.setPetType(petType);
+        setState(currState);
+        firePropertyChanged();
     }
 
 }

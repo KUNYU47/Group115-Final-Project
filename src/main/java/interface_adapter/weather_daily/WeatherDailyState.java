@@ -9,6 +9,7 @@ public class WeatherDailyState {
     private String condition;
     private String description;
     private String summary;
+    private String petType;
 
     private String errorMessage;
 
@@ -30,6 +31,10 @@ public class WeatherDailyState {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setPetType(String petType) {
+        this.petType = petType;
     }
 
     public void setErrorMessage(String errorMessage) {
@@ -54,6 +59,10 @@ public class WeatherDailyState {
 
     public String getSummary() {
         return summary;
+    }
+
+    public String getPetType() {
+        return petType;
     }
 
     public String getErrorMessage() {

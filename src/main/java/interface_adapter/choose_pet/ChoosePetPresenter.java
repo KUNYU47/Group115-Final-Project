@@ -4,6 +4,8 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.change_password.LoggedInViewModel;
 import interface_adapter.weather.WeatherState;
 import interface_adapter.weather.WeatherViewModel;
+import interface_adapter.weather_daily.WeatherDailyViewModel;
+import interface_adapter.weather_hourly.WeatherHourlyViewModel;
 import use_case.choose_pet.ChoosePetOutputBoundary;
 import use_case.choose_pet.ChoosePetOutputData;
 
@@ -13,14 +15,20 @@ import use_case.choose_pet.ChoosePetOutputData;
 public class ChoosePetPresenter implements ChoosePetOutputBoundary {
     private final ChoosePetViewModel petViewModel;
     private final WeatherViewModel weatherViewModel;
+    private final WeatherHourlyViewModel weatherHourlyViewModel;
+    private final WeatherDailyViewModel weatherDailyViewModel;
     private final ViewManagerModel viewManagerModel;
 
     public ChoosePetPresenter(ViewManagerModel viewManagerModel,
                               ChoosePetViewModel petViewModel,
-                              WeatherViewModel weatherViewModel) {
+                              WeatherViewModel weatherViewModel,
+                              WeatherHourlyViewModel weatherHourlyViewModel,
+                              WeatherDailyViewModel weatherDailyViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.petViewModel = petViewModel;
         this.weatherViewModel = weatherViewModel;
+        this.weatherHourlyViewModel = weatherHourlyViewModel;
+        this.weatherDailyViewModel = weatherDailyViewModel;
     }
 
     @Override
@@ -66,6 +74,28 @@ public class ChoosePetPresenter implements ChoosePetOutputBoundary {
         weatherViewModel.firePropertyChanged();
         // Update the view manager to switch to the current view of the pet view model
         viewManagerModel.setState(weatherViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+    }
+
+    @Override
+    public void switchToHourlyView() {
+        final ChoosePetState currentState = petViewModel.getState();
+        final String petType = currentState.getSelectedPet();
+        weatherHourlyViewModel.setPetType(petType);
+        weatherHourlyViewModel.firePropertyChanged();
+        // Update the view manager to switch to the current view of the pet view model
+        viewManagerModel.setState(weatherHourlyViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+    }
+
+    @Override
+    public void switchToDailyView() {
+        final ChoosePetState currentState = petViewModel.getState();
+        final String petType = currentState.getSelectedPet();
+        weatherDailyViewModel.setPetType(petType);
+        weatherDailyViewModel.firePropertyChanged();
+        // Update the view manager to switch to the current view of the pet view model
+        viewManagerModel.setState(weatherDailyViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 }

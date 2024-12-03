@@ -334,7 +334,8 @@ public class AppBuilder {
      */
     public AppBuilder addChoosePetUseCase() {
         final ChoosePetOutputBoundary choosePetOutputBoundary =
-                new ChoosePetPresenter(viewManagerModel, choosePetViewModel, weatherViewModel);
+                new ChoosePetPresenter(viewManagerModel, choosePetViewModel, weatherViewModel,
+                        weatherHourlyViewModel, weatherDailyViewModel);
 
         final ChoosePetInputBoundary choosePetInteractor = new ChoosePetInteractor(choosePetOutputBoundary);
 

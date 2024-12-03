@@ -16,4 +16,14 @@ public interface ChoosePetInputBoundary {
      * Switch to the current view after choosing a pet.
      */
     void switchToCurrView();
+
+    /**
+     * Switch to the hourly forecast view after choosing a pet.
+     */
+    void switchToHourlyView();
+
+    /**
+     * Switch to the daily forecast view after choosing a pet.
+     */
+    void switchToDailyView();
 }

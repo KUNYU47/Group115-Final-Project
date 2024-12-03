@@ -27,6 +27,8 @@ public class ChoosePetView extends JPanel implements ActionListener, PropertyCha
     private final JLabel messageLabel;
     private final JButton confirmButton;
     private final JButton switchToWeatherButton;
+    private final JButton switchToHourlyButton;
+    private final JButton switchToDailyButton;
 
     public ChoosePetView(ChoosePetViewModel choosePetViewModel) {
 
@@ -47,13 +49,39 @@ public class ChoosePetView extends JPanel implements ActionListener, PropertyCha
         add(confirmButton);
 
         // Button to switch to current weather view
-        switchToWeatherButton = new JButton("Switch to Current Weather View");
-        add(switchToWeatherButton);
+        switchToWeatherButton = new JButton("Current Weather");
+
+        switchToHourlyButton = new JButton("Hourly Forecast");
+
+        switchToDailyButton = new JButton("Daily Forecast");
+
+        final JPanel buttons = new JPanel();
+        buttons.setLayout(new BoxLayout(buttons, BoxLayout.X_AXIS));
+        buttons.add(switchToWeatherButton);
+        buttons.add(switchToHourlyButton);
+        buttons.add(switchToDailyButton);
+        add(buttons);
 
         switchToWeatherButton.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         choosePetController.switchToCurrView();
+                    }
+                }
+        );
+
+        switchToHourlyButton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        choosePetController.switchToHourlyView();
+                    }
+                }
+        );
+
+        switchToDailyButton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        choosePetController.switchToDailyView();
                     }
                 }
         );

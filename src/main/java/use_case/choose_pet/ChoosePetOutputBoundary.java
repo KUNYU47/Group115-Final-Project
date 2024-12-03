@@ -22,5 +22,15 @@ public interface ChoosePetOutputBoundary {
      * Switches to the current weather view.
      */
     void switchToCurrView();
+
+    /**
+     * Switches to the hourly forecast weather view.
+     */
+    void switchToHourlyView();
+
+    /**
+     * Switches to the daily forecast weather view.
+     */
+    void switchToDailyView();
 }
 

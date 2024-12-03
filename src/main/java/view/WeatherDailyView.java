@@ -9,6 +9,7 @@ import java.beans.PropertyChangeListener;
 import javax.swing.*;
 
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.weather.WeatherState;
 import interface_adapter.weather.WeatherViewModel;
 import interface_adapter.weather_daily.WeatherDailyController;
 import interface_adapter.weather_daily.WeatherDailyState;
@@ -40,6 +41,8 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
 
     private final JButton getWeatherButton;
     private final JButton goToSettingsButton;
+
+    private PetMovementPanel petMovementPanel = new PetMovementPanel("");
 
     private final JPanel mainPanel = new JPanel();
     private final JLayeredPane layeredPane = new JLayeredPane();
@@ -73,6 +76,12 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
         );
         dayInputPanel.setOpaque(false);
 
+        final JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
+        inputPanel.add(cityInputPanel);
+        inputPanel.add(dayInputPanel);
+        inputPanel.setOpaque(false);
+
         // Create drop-down menu to switch between modes.
         final String[] modeOptions = weatherDailyViewModel.getModeOptions();
         modeComboBox = new JComboBox<>(modeOptions);
@@ -86,6 +95,7 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
         summaryArea.setLineWrap(true);
         summaryArea.setEditable(false);
         summaryArea.setFont(new Font("Arial", Font.BOLD, 12));
+        summaryArea.setRows(2);
         summaryArea.setOpaque(false);
 
         final JPanel weatherInfoPanel = new JPanel();
@@ -102,6 +112,8 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
         goToSettingsButton = new JButton(WeatherDailyViewModel.SETTINGS_LABEL);
         buttons.add(goToSettingsButton);
         buttons.setOpaque(false);
+
+        petMovementPanel.setOpaque(false);
 
         // Add action listener to the "Get Weather" button
         getWeatherButton.addActionListener(
@@ -137,9 +149,8 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
 
         mainPanel.setOpaque(false);
         mainPanel.setBounds(0, 0, scaledIcon.getIconWidth(), scaledIcon.getIconHeight());
-        setMainLayout(mainPanel, title,
-                      cityInputPanel, dayInputPanel,
-                      buttons, weatherInfoPanel, summaryArea);
+        setMainLayout(mainPanel, title, inputPanel,
+                      buttons, weatherInfoPanel, summaryArea, petMovementPanel);
 
         layeredPane.add(mainPanel, JLayeredPane.PALETTE_LAYER);
 
@@ -149,11 +160,11 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
 
     private void setMainLayout(JPanel panel,
                                JLabel title,
-                               LabelTextPanel cityInputPanel,
-                               LabelTextPanel dayInputPanel,
+                               JPanel inputPanel,
                                JPanel buttons,
                                JPanel weatherInfoPanel,
-                               JTextArea summary) {
+                               JTextArea summary,
+                               PetMovementPanel petPanel) {
         final GroupLayout layout = new GroupLayout(panel);
         panel.setLayout(layout);
 
@@ -164,14 +175,13 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
                 layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                         .addComponent(title)
                         .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addComponent(cityInputPanel)
-                                        .addComponent(dayInputPanel))
+                                .addComponent(inputPanel)
                                 .addComponent(this.modeComboBox)
                                 .addGap(40))
                         .addComponent(buttons)
                         .addComponent(weatherInfoPanel)
                         .addComponent(summary)
+                        .addComponent(petPanel)
         );
 
         layout.setVerticalGroup(
@@ -180,14 +190,15 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
                         .addComponent(title)
                         .addGap(10)
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addComponent(cityInputPanel)
-                                        .addComponent(dayInputPanel))
+                                .addComponent(inputPanel)
                                 .addComponent(this.modeComboBox))
                         .addComponent(buttons)
                         .addComponent(weatherInfoPanel)
+                        .addGap(5)
                         .addComponent(summary)
-                        .addGap(100)
+                        .addGap(20)
+                        .addComponent(petPanel)
+                        .addGap(20)
         );
     }
 
@@ -203,7 +214,31 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
             errorMessageLabel.setText(state.getErrorMessage());
             JOptionPane.showMessageDialog(this, errorMessageLabel);
         }
+        setPet(state);
         setFields(state);
+    }
+
+    private void setPet(WeatherDailyState state) {
+        if (petMovementPanel != null) {
+            mainPanel.remove(petMovementPanel);
+        }
+        if (state.getPetType() != null && !state.getPetType().isEmpty()) {
+            petMovementPanel = new PetMovementPanel(state.getPetType());
+            petMovementPanel.setOpaque(false);
+
+            layeredPane.remove(mainPanel);
+            setMainLayout(mainPanel,
+                    (JLabel) mainPanel.getComponent(0),
+                    (JPanel) mainPanel.getComponent(1),
+                    (JPanel) mainPanel.getComponent(3),
+                    (JPanel) mainPanel.getComponent(4),
+                    (JTextArea) mainPanel.getComponent(5),
+                    petMovementPanel);
+            layeredPane.add(mainPanel, JLayeredPane.PALETTE_LAYER);
+
+            this.revalidate();
+            this.repaint();
+        }
     }
 
     private void setFields(WeatherDailyState state) {
@@ -234,7 +269,7 @@ public class WeatherDailyView extends JPanel implements ActionListener, Property
         else if ("Snow".equals(condition)) {
             initialImage = new ImageIcon("resources/images/weather_conditions/snow.jpg");
         }
-        else if ("Clear".equals(condition)) {
+        else {
             initialImage = new ImageIcon("resources/images/weather_conditions/clear.jpg");
         }
         return getScaledIcon(initialImage);

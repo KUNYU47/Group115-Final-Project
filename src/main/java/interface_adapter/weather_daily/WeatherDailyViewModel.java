@@ -57,4 +57,15 @@ public class WeatherDailyViewModel extends ViewModel<WeatherDailyState> {
     public String[] getModeOptions() {
         return MODE_OPTIONS;
     }
+
+    /**
+     * Set the pet type in WeatherDailyState when switching view.
+     * @param petType the pet type that user picked.
+     */
+    public void setPetType(String petType) {
+        final WeatherDailyState currState = getState();
+        currState.setPetType(petType);
+        setState(currState);
+        firePropertyChanged();
+    }
 }

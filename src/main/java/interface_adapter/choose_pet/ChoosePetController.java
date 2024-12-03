@@ -24,9 +24,23 @@ public class ChoosePetController {
     }
 
     /**
-     * Executes the switch to hourly forecast view use case.
+     * Executes the switch to current weather view use case.
      */
     public void switchToCurrView() {
         petUseCaseInteractor.switchToCurrView();
+    }
+
+    /**
+     * Executes the switch to hourly forecast view use case.
+     */
+    public void switchToHourlyView() {
+        petUseCaseInteractor.switchToHourlyView();
+    }
+
+    /**
+     * Executes the switch to daily forecast view use case.
+     */
+    public void switchToDailyView() {
+        petUseCaseInteractor.switchToDailyView();
     }
 }

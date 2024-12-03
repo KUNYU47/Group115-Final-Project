@@ -8,6 +8,7 @@ public class WeatherHourlyState {
     private double temperature;
     private String condition;
     private String description;
+    private String petType;
 
     private String errorMessage;
 
@@ -25,6 +26,10 @@ public class WeatherHourlyState {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setPetType(String petType) {
+        this.petType = petType;
     }
 
     public void setErrorMessage(String errorMessage) {
@@ -45,6 +50,10 @@ public class WeatherHourlyState {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getPetType() {
+        return petType;
     }
 
     public String getErrorMessage() {

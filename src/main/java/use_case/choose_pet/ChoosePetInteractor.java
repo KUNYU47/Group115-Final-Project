@@ -41,4 +41,14 @@ public class ChoosePetInteractor implements ChoosePetInputBoundary {
     public void switchToCurrView() {
         choosePetPresenter.switchToCurrView();
     }
+
+    @Override
+    public void switchToHourlyView() {
+        choosePetPresenter.switchToHourlyView();
+    }
+
+    @Override
+    public void switchToDailyView() {
+        choosePetPresenter.switchToDailyView();
+    }
 }
