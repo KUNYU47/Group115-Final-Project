@@ -22,7 +22,7 @@ public class LogoutInteractor implements LogoutInputBoundary {
         // * tell the presenter to prepare a success view.
         final String currUser = logoutInputData.getUsername();
         this.userDataAccessObject.setCurrentUsername(null);
-        final LogoutOutputData logoutOutputData = new LogoutOutputData(currUser, false);
+        final LogoutOutputData logoutOutputData = new LogoutOutputData(currUser);
         logoutPresenter.prepareSuccessView(logoutOutputData);
     }
 }
