@@ -8,6 +8,7 @@ import org.json.JSONObject;
 public class WeatherInteractor implements WeatherInputBoundary {
     private final WeatherDataAccessInterface weatherDataAccessObject;
     private final WeatherOutputBoundary weatherPresenter;
+    @SuppressWarnings({"FieldCanBeLocal", "checkstyle:SuppressWarnings"})
     private final String emptyString = "";
 
     public WeatherInteractor(WeatherDataAccessInterface weatherDataAccessObject,
