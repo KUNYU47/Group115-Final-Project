@@ -21,7 +21,7 @@ public class WeatherDataAccessObject implements WeatherDataAccessInterface,
     private static final String API_KEY;
 
     static {
-        API_KEY = "d918d0fcce1238fa1bc59c035b57621c";
+        API_KEY = "ENTER_YOUR_API_KEY";
     }
 
     /**

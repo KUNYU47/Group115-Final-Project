@@ -23,6 +23,7 @@ class WeatherHourlyInteractorTest {
                 assertNotNull(weatherHourlyOutputData.getCondition());
                 assertNotNull(weatherHourlyOutputData.getHourWeatherData());
                 assertInstanceOf(Double.class, weatherHourlyOutputData.getTemperature());
+                assertNotNull(weatherHourlyOutputData.getDescription());
             }
 
             @Override

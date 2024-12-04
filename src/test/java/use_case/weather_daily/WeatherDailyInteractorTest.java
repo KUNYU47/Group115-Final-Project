@@ -24,6 +24,7 @@ class WeatherDailyInteractorTest {
                 assertNotNull(weatherDailyOutputData.getCondition());
                 assertInstanceOf(Double.class, weatherDailyOutputData.getTemperature());
                 assertNotNull(weatherDailyOutputData.getSummary());
+                assertNotNull(weatherDailyOutputData.getDescription());
             }
 
             @Override
